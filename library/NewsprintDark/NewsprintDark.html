@@ -1,0 +1,114 @@
+<div id="dashboard">
+    <NewsprintDarkHeader></NewsprintDarkHeader>
+    <div class="mt-20 relative left-0 right-0 m-auto md:w-6/12 w-10/12 py-5 px-10 bg-pageSectionColor">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 primary-fonts">
+            <slot name="filters"></slot>
+        </div>
+    </div>
+    <div class="mt-20 relative left-0 right-0 m-auto md:w-6/12 w-10/12 py-5">
+        <div class="text-center text-6xl font-bold text-primaryFontColor secondary-fonts">Dashboard</div>
+        <div class="text-secondaryFontColor text-center pt-5 font-semibold primary-fonts">Last updated {{ lastRefresh }}.</div>
+    </div>
+    <div class="mt-20 relative left-0 right-0 m-auto md:w-6/12 w-10/12 py-5 secondary-fonts">
+        <div class="text-center text-3xl font-bold text-primaryFontColor">Sales Value</div>
+        <div class="grid grid-cols-1">
+            <slot></slot>
+        </div>
+    </div>
+</div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Raleway&display=swap');
+:root {
+    --primary-color: #0f172a;
+    --primary-highlight-color: #fcdfdf;
+    --primary-border-color: var(--grayscale-two-color);
+    --primary-font-color: var(--grayscale-one-color);
+
+    --secondary-color: #164e63;
+    --secondary-highlight-color: #f87171;
+    --secondary-border-color: var(--grayscale-three-color);
+    --secondary-font-color: var(--secondary-highlight-color);
+
+    --grayscale-one-color: #f4f4f5;
+    --grayscale-two-color: #d1d5db;
+    --grayscale-three-color: #6b7280;
+    --grayscale-hover-color: var(--grayscale-three-color);
+
+    --filter-background-color: #1e293b;
+    --filter-menu-color: #1e293b;
+    --filter-highlight-color: var(--gray-color);
+    --filter-font-highlight-color: var(--secondary-highlight-color);
+    --filter-font-color: var(--grayscale-two-color);
+    --filter-border-color: var(--grayscale-three-color);
+
+    --page-section-color: #1e293b;
+    --page-background-color: var(--primary-color);
+
+    --primary-button-color: transparent;
+    --secondary-button-color: #3b82f6;
+
+    --tile-border-color: transparent;
+    --tile-background-color: transparent;
+}
+
+.primaryFilterRadius {
+    @apply rounded;
+}
+
+.secondaryFilterRadius {
+    @apply rounded;
+}
+
+/* Fonts */
+.primary-fonts {
+    font-family: 'Raleway', sans-serif;
+}
+
+.secondary-fonts {
+    font-family: 'Merriweather', serif;
+}
+/* Fonts */
+
+svg, path {
+    @apply fill-current text-primaryFontColor;
+}
+body {
+    @apply bg-pageBackgroundColor;
+}
+
+/* Toggle Switch */
+.toggle-switch-container {
+    @apply flex justify-center items-center;
+}
+.toggle-switch {
+    @apply relative rounded-full w-12 h-7 transition duration-200 ease-linear;
+}
+.toggle-switch-label {
+    @apply absolute top-1.5  border-2 w-4 h-4 rounded-full transition transform duration-100 ease-linear cursor-pointer;
+}
+.toggle-switch-input {
+    @apply appearance-none w-full h-full focus:outline-none;
+}
+.toggle-status-text {
+    @apply font-semibold flex self-center pr-2 text-filterFontColor;
+}
+.toggle-active-bg {
+    @apply bg-secondaryButtonColor;
+}
+.toggle-inactive-bg {
+    @apply bg-grayscaleTwoColor;
+}
+.toggle-active {
+    @apply bg-grayscaleOneColor border-grayscaleOneColor right-1;
+}
+.toggle-inactive {
+    @apply bg-grayscaleOneColor border-grayscaleOneColor left-1;
+}
+/* Toggle Switch */
+
+.tileElement {
+    @apply border border-tileBorderColor bg-tileBackgroundColor rounded w-full p-4;
+}
+
+</style>

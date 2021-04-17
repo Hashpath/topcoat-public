@@ -1,0 +1,327 @@
+<div id="ch-theme">
+
+    <HarmonySidebar />
+
+    <div class="relative md:ml-64">
+        <HarmonyHeader />
+
+        <div class="container mx-auto h-full px-10 pt-10 pb-1">
+            <div class="bg-pageSectionColor p-4">
+                <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 secondary-fonts">
+                    <slot name="filters"></slot>
+                </div>
+            </div>
+        </div>
+
+        <!--div class="container mx-auto h-full px-10 pt-10 pb-1">
+            <div class="p-4">
+                <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 secondary-fonts">
+                    <slot name="stats"></slot>
+                </div>
+            </div>
+        </div-->
+
+        <div class="container mx-auto h-full min-h-screen p-10">
+            <div class="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-4 secondary-fonts">
+                <slot></slot>
+            </div>
+        </div>
+
+        <CacheControls />
+        <!-- Footer can be used here -->
+    </div>
+</div>
+
+<style>
+:root {
+    --primary-color: #1D4ED8;
+    --primary-highlight-color: #2563EB;
+    --primary-border-color: #F4F4F5;
+    --primary-font-color: #27272A;
+
+    --secondary-color: #27272A;
+    --secondary-highlight-color: #18181B;
+    --secondary-border-color: #A1A1AA;
+    --secondary-font-color: #FFFFFF;
+
+    --grayscale-one-color: #F4F4F5;
+    --grayscale-two-color: #E5E7EB;
+    --grayscale-three-color: #9CA3AF;
+    --grayscale-hover-color: #FFFFFF;
+
+    --filter-background-color: #FFFFFF;
+    --filter-menu-color: #E5E7EB;
+    --filter-highlight-color: #18181B;
+    --filter-font-highlight-color: var(--secondary-font-color);
+    --filter-font-color: var(--primary-font-color); 
+    --filter-border-color: transparent; 
+    
+    --page-section-color: #F4F4F5;
+    --page-background-color: #FFFFFF;
+
+    --primary-button-color: transparent;
+    --secondary-button-color: var(--primary-color);
+
+    --tile-border-color: var(--primary-border-color);
+    --tile-background-color: var(--page-section-color);
+
+
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+.primary-fonts {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.secondary-fonts {
+    font-family: 'Work Sans', sans-serif !important;
+}
+
+.primaryFilterRadius {
+    @apply rounded;
+}
+
+.secondaryFilterRadius {
+    @apply rounded;
+}
+
+/* ---- logout button ---- */
+.logout-button {
+    @apply bg-primaryColor;
+}
+
+/* Cache Control */
+.cache-control-container {
+    @apply w-full mx-auto flex flex-wrap md:px-10 lg:px-10 px-8;
+}
+.cache-control-content {
+    @apply md:flex flex-row flex-wrap items-center ml-auto;
+}
+
+.cache-control-body {
+    @apply py-3 px-5 bg-secondaryColor rounded-md fixed bottom-3 right-10;
+}
+
+.cache-control-button {
+    @apply absolute border-solid border-4 border-primaryBorderColor -left-10 text-secondaryFontColor bg-primaryColor py-2 px-3 shadow-2xl rounded-full hover:text-secondaryFontColor focus:outline-none;
+}
+
+.cache-control-text {
+    @apply text-xs text-secondaryFontColor;
+}
+/* Cache Control */
+
+
+/* Toggle Switch */
+.toggle-switch-container {
+    @apply flex justify-center items-center;
+}
+.toggle-switch {
+    @apply relative rounded-full w-12 h-6 transition duration-200 ease-linear;
+}
+.toggle-switch-label {
+    @apply absolute bg-grayscaleOneColor border-2 mb-2 w-6 h-6 rounded-full transition transform duration-100 ease-linear cursor-pointer;
+}
+.toggle-switch-input {
+    @apply appearance-none w-full h-full focus:outline-none;
+}
+.toggle-status-text {
+    @apply font-semibold flex self-center pr-2;
+}
+.toggle-active-bg {
+    @apply bg-secondaryButtonColor;
+}
+.toggle-inactive-bg {
+    @apply bg-grayscaleThreeColor;
+}
+.toggle-active {
+    @apply border-grayscaleOneColor bg-grayscaleOneColor right-0;
+}
+.toggle-inactive {
+    @apply bg-grayscaleOneColor left-0;
+}
+/* Toggle Switch */
+
+/* Big Number */
+.big-number {
+    @apply font-light lg:text-4xl md:text-3xl text-2xl my-4 text-primaryColor;
+}
+.big-number-label {
+    @apply text-sm text-secondaryFontColor font-bold mb-3;
+}
+.big-number-stats {
+    @apply relative flex;
+}
+.big-number-percentage {
+    @apply text-xl text-secondaryFontColor font-bold w-full;
+}
+.big-number-icon {
+    @apply bg-secondaryColor text-primaryFontColor text-xs mr-1 py-1 px-3 rounded-full;
+}
+.big-number-value {
+    @apply text-xl font-normal text-secondaryFontColor;
+}
+/* Big Number */
+
+/* Date Filter  */
+.date-filter-container {
+    @apply flex w-full py-1;
+}
+.date-fitler-input {
+    @apply border-none relative py-1 h-11 px-2 w-full outline-none border border-primaryBorderColor rounded bg-grayscaleOneColor text-sm text-secondaryFontColor;
+}
+/* Date Filter */
+
+
+.tileElement {
+    @apply border border-tileBorderColor bg-tileBackgroundColor rounded w-full p-4;
+}
+
+/* Legacy Date Filter */
+/* Date Range Picker overrides */
+
+.toggle__dot {
+  top: -.25rem;
+  left: -.25rem;
+  transition: all 0.3s ease-in-out;
+}
+
+input:checked ~ .toggle__dot {
+  transform: translateX(100%);
+  background-color: #48bb78;
+}
+
+.wld-date-picker button {
+    @apply bg-primaryColor
+}
+
+.wld-date-picker .ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+    @apply bg-primaryColor focus:border-primaryColor border-primaryColor;
+}
+
+.wld-date-picker .ant-calendar-range .ant-calendar-in-range-cell::before {
+    background: lightgray !important;
+    color: white !important;
+}
+
+.ant-calendar-range .ant-calendar-in-range-cell   {
+    @apply text-secondaryFontColor !important;
+}
+.wld-date-presets {
+  box-shadow: 0 .2rem .8rem rgba(0, 0, 0, 0.15);
+  clip-path: inset(-.8rem 0px -.8rem -.8rem);
+  min-width: 14.6rem;
+  border-right: .1rem solid #ECEEF5;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.wld-date-picker-apply-button {
+  float: right; 
+  margin-top: .4rem;
+}
+
+.wld-date-range-values {
+  height: 3.2rem; 
+  font-size:1.2rem;
+  vertical-align: middle; 
+  padding-top: .8rem; 
+  padding-left: 1.8rem; 
+  padding-right: .6rem; 
+  display: inline-block; 
+  font-weight: 300; 
+  color: #161F3D99;
+}
+
+.wld-date-range-values-mobile {
+  float: right; 
+  text-align: right; 
+  line-height: 2.0rem; 
+  font-size:1.6rem;
+  font-weight: 300; 
+  color: #161F3D;
+
+}
+
+.wld-date-presets-button {
+  border-top-right-radius: 0px; 
+  border-bottom-right-radius: 0px; 
+  width: 140px; 
+  vertical-align: top;
+  @apply bg-primaryColor hover:bg-primaryColor;
+}
+
+.wld-date-picker-input {
+  vertical-align: top; 
+  border-top-left-radius: 2.0rem; 
+  border-bottom-left-radius: 0px;
+  margin-left: -.5rem;
+}
+
+.wld-date-picker .ant-calendar-input-wrap {
+  display: none;
+}
+
+.wld-date-picker .ant-calendar-range {
+  top: 39px !important;
+  position: absolute;
+}
+
+.wld-date-picker  .ant-calendar-range-middle {
+  display: none;
+}
+
+.wld-date-picker .ant-calendar {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.wld-date-presets .ant-dropdown-menu-item-selected {
+  color: #161F3D;
+  font-weight: bold;
+  background-color: transparent;
+}
+
+.wld-date-picker .ant-calendar-selected-day .ant-calendar-date {
+  background-color: rgba(129, 140, 248, 1);
+  color: white;
+}
+
+.wld-date-picker .ant-calendar-range .ant-calendar-in-range-cell::before {
+  background-color: rgba(129, 140, 248, 1);
+}
+
+.wld-date-picker .ant-calendar-footer {
+  border-top: none;
+}
+
+.wld-date-picker .ant-calendar-footer-extra {
+  width: 100%;
+}
+
+.mdrp__activator input {
+  background-color: transparent;
+  color: rgb(22, 31, 61);
+}
+
+.mdrp__activator .activator-wrapper .text-field:focus~label, .mdrp__activator .activator-wrapper .text-field__filled~label {
+    top: -20px;
+    font-size: 14px;
+    color: gray !important;
+}
+
+.mdrp__activator .activator-wrapper .bar:after, .mdrp__activator .activator-wrapper .bar:before {
+    background: transparent !important;
+}
+
+.date-picker-label {
+  color: rgb(22, 31, 61);
+  font-size: 12px;
+  font-weight: 700;
+  padding-bottom: 5px;
+  padding-left: 4px;
+}
+
+</style> 

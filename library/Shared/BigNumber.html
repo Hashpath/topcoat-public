@@ -1,0 +1,30 @@
+<div class='relative p-3'>
+    <div class="big-number-label">
+        Overview
+    </div>
+    <div class="big-number">
+        $3000
+    </div>
+    <div class="big-number-stats">
+        <div class="big-number-percentage">
+            <span class="big-number-icon">
+                <i class="fas fa-chevron-down"></i>
+            </span>
+            -2%
+        </div>
+        <div class="big-number-value">
+            $2800
+        </div>
+    </div>
+</div>
+<script type='visualization/javascript'>
+    export default {
+        name: 'BigNumber',
+        props: {
+            total: Number,
+            user: Number,
+            label: String,
+            borderLess: Boolean,
+        },
+    }
+</script>

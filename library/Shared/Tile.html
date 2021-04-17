@@ -1,0 +1,14 @@
+<!----------------------- begin global tiles ----------------------->
+
+<div class="bg-white border-gray-200 border rounded p-0 tileElement">
+    <div v-if="loading && !nospinner">
+        <div :style="{ height: (height - 2) + 'px' }">
+            <Spinner />
+        </div>
+    </div>
+    <div v-else>
+        <div :style="{ height: is_iframe ? 'inherit' : (height - 2) + 'px' }">
+            <slot></slot>
+        </div>
+    </div>
+</div>

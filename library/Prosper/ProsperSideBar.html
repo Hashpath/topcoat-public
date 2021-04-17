@@ -1,0 +1,46 @@
+<div>
+  <div class="overflow-auto ease-in-out transition-all duration-100 md:flex flex-col bg-primaryColor md:flex-col min-h-full h-screen w-16 primary-fonts" :class="{'lg:w-56': isVisible}">
+    <div
+        class="flex flex-col w-full w-16 lg:w-full text-primaryFontColor flex-shrink-0"
+    >
+
+    <div :class="{'w-16': isVisible}" class="lg:w-full mx-auto">
+
+      <nav class="px-0" :class="{'lg:px-3.5': isVisible}">
+        <div class=" mx-auto pt-4 flex justify-center items-center" :class="{'lg:justify-between': isVisible, }">
+          <div class="flex-shrink-0 hidden mr-2" :class="{'lg:block': isVisible}">
+            <img :width="project.logo.width" :src="project.logo.url" >
+          </div>
+          <i class="fa fa-bars text-lg cursor-pointer" @click="barToggle"></i>
+        </div>
+
+        <div class="pt-6">
+          <ul class="flex flex-col">
+            <a
+              v-for="page in project.nav"
+              class="bg-primaryButtonColor items-center px-3 py-2 h-14 flex justify-center hover:text-primaryFontColor hover:border-grayscaleTwoColor lg:justify-start lg:w-full text-center hover:bg-primaryHighlightColor border-l-2 border-primaryColor text-primaryFontColor opacity-70 hover:opacity-100"
+              :class="navSelected(page.url, 'bg-primaryHighlightColor border-grayscaleTwoColor text-primaryFontColor opacity-100')" :href="'/' + page.url"><i :class="'icon fas text-base ' + page.icon_class" /> <span class="hidden pl-2 text-center" :class="{'lg:block' : isVisible}">{{ page.title }} </span> </a>
+          </ul>
+        </div>
+      </nav>
+
+    </div>
+    </div>
+  </div>
+</div>
+
+
+<script type='visualization/javascript'>
+export default {
+  name: 'sideBar',
+  data: () => ({
+    isVisible: true,
+  }),
+  methods: {
+    barToggle() {
+      this.isVisible = !this.isVisible
+    }
+  }
+}
+</script>
+

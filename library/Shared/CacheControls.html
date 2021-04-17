@@ -1,0 +1,26 @@
+<div class="cache-control-container">
+    <div class="cache-control-content">
+        <div class="cache-control-body" v-if="cache_init_time">
+            <div class="flex items-center relative cache-control-preview">
+                <button @click="refreshCache()" class="cache-control-button">
+                    <i :class="iconClass ? iconClass : 'fas fa-redo-alt'"></i>
+                </button>
+                <div class="ml-2 cache-control-text-body" v-if='!noText'>
+                    <div class="cache-control-text">Last Updated &nbsp;</div>
+                    <div class="cache-control-text">{{ lastRefresh }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type='visualization/javascript'>
+    export default {
+        name: 'CacheControls',
+        props: {
+            noText: Boolean,
+            iconClass: String,
+            minimal: Boolean
+        }
+    }
+</script>

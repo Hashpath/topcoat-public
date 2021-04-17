@@ -1,0 +1,39 @@
+<div style="padding-top: 6px;">
+  <a-switch v-model="checked" /> <span class="toggle-label">{{ metadata.title }}</span>
+</div>
+
+<script type='visualization/javascript'>
+export default {
+    data() {
+      return {
+          checked_internal: false 
+      }
+    },
+    computed: {
+      checked: {
+        get() {
+          return this.checked_internal;
+        },
+        set(value) {
+          this.checked_internal = value;
+          this.setFilterValue("checkbox", this.checked_internal, true);
+        }
+      }
+    },
+    methods: {
+      onVisualizationInit() {
+          // See if the page was loaded with a url param value
+          const initial_value = this.getFilterValue("checkbox");
+          
+          if (initial_value) {
+            this.checked_internal = (initial_value === 'true');
+            this.setFilterValue("checkbox", this.checked_internal, true);
+          } else {
+            this.checked_internal = false;
+            this.setFilterValue("checkbox", false, true);
+          } 
+      }
+    }
+}
+</script>
+

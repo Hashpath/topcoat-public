@@ -1,0 +1,194 @@
+<div id="elegance" class="bg-pageBackgroundColor">
+    <EleganceHeader></EleganceHeader>
+    <div class="overflow-hidden px-10 mx-auto">
+        <CacheControls minimal iconClass='fa fa-redo transform rotate-40' />
+    </div>
+    <div class="pr-10 pl-10 mx-auto secondary-fonts">
+        <div class="mb-2 text-sm text-primaryFontColor">Filters</div>
+        <div class="bg-pageSectionColor w-full rounded flex items-center grid md:grid-cols-1 lg:grid-cols-4 p-3 gap-4">
+            <slot name='filters'></slot>
+        </div>
+
+        <div class="mt-5 secondary-fonts">
+            <div class="grid md:grid-cols-1 lg:grid-cols-3 py-3 gap-4">
+                <slot name='stats'></slot>
+            </div>
+
+            <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-4 mt-5 secondary-fonts">
+                <slot></slot>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+:root {
+    --primary-color: #0F172A;
+    --primary-highlight-color: rgba(255, 255, 255, 0.24);
+    --primary-border-color: #d1d5db;
+    --primary-font-color: #f8fafc;
+
+    --secondary-color: #164e63;
+    --secondary-highlight-color: #E5E7EB;
+    --secondary-border-color: #6B7280;
+    --secondary-font-color: var(--grayscale-three-color);
+
+    --grayscale-one-color: #F3F4F6;
+    --grayscale-two-color: #4B5563;
+    --grayscale-three-color: #1f2937;
+    --grayscale-hover-color: var(--grayscale-three-color);
+
+    --filter-background-color: transparent;
+    --filter-menu-color: var(--page-section-color);
+    --filter-highlight-color: #eff6ff;
+    --filter-font-highlight-color: var(--grayscale-three-color);
+    --filter-font-color: var(--grayscale-three-color);
+    --filter-border-color: var(--primary-border-color);
+
+    --page-section-color: #ffffff;
+    --page-background-color: #f8fafc;
+
+    --primary-button-color: transparent;
+    --secondary-button-color: #3b82f6;
+
+    --tile-border-color: transparent;
+    --tile-background-color: var(--page-section-color);
+}
+
+/* Fonts */
+.primary-fonts {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.secondary-fonts {
+    font-family: 'Nunito', sans-serif;
+}
+/* Fonts */
+
+.primaryFilterRadius {
+    @apply rounded;
+}
+
+.secondaryFilterRadius {
+    @apply rounded-3xl;
+}
+
+body {
+    @apply bg-pageBackgroundColor;
+}
+/* Cache Control */
+.cache-control-container {
+    @apply w-full mx-auto flex flex-wrap pt-6;
+}
+.cache-control-content {
+    @apply md:flex flex-row flex-wrap items-center ml-auto;
+}
+
+.cache-control-text-body {
+    @apply text-secondaryFontColor flex;
+}
+
+.cache-control-button {
+    @apply ml-3 bg-secondaryButtonColor text-primaryFontColor rounded w-8 h-8 flex justify-center items-center;
+}
+
+.cache-control-preview {
+    @apply flex flex-row-reverse;
+}
+
+.cache-control-text {
+    @apply text-xs text-secondaryFontColor text-sm;
+}
+/* Cache Control */
+
+/* Toggle Switch */
+.toggle-switch-container {
+    @apply flex justify-start items-start;
+}
+.toggle-switch {
+    @apply relative rounded-full w-12 h-7 transition duration-200 ease-linear;
+}
+.toggle-switch-label {
+    @apply absolute top-1.5  border-2 w-4 h-4 rounded-full transition transform duration-100 ease-linear cursor-pointer;
+}
+.toggle-switch-input {
+    @apply appearance-none w-full h-full focus:outline-none;
+}
+.toggle-status-text {
+    @apply font-semibold flex self-center pr-2 text-filterFontColor;
+}
+.toggle-active-bg {
+    @apply bg-secondaryButtonColor;
+}
+.toggle-inactive-bg {
+    @apply bg-grayscaleTwoColor;
+}
+.toggle-active {
+    @apply bg-grayscaleOneColor border-grayscaleOneColor right-1;
+}
+.toggle-inactive {
+    @apply bg-grayscaleOneColor border-grayscaleOneColor left-1;
+}
+/* Toggle Switch */
+
+/* Sort Box */
+.sort-container {
+    @apply relative block px-3 border-filterBorderColor border appearance-none h-9 w-full bg-filterBackgroundColor text-filterFontColor rounded leading-tight focus:outline-none hover:bg-filterHighlightColor;
+}
+.sort-button {
+    @apply relative px-4 py-2 inline-flex w-full rounded-lg focus:z-10 focus:outline-none rounded;
+}
+.sort-arrow {
+    @apply pointer-events-none absolute top-3 right-3 flex text-sm px-2 text-filterFontColor;
+}
+.sort-menu {
+    @apply absolute border-filterBorderColor border w-full rounded z-50 block appearance-none bg-filterMenuColor text-filterFontColor leading-tight focus:outline-none;
+}
+.sort-menu-item {
+    @apply relative px-4 py-3 inline-flex w-full focus:z-10 focus:outline-none border-b-2 border-filterBorderColor focus:text-secondaryFontColor hover:text-secondaryFontColor hover:bg-filterHighlightColor;
+}
+/* Sort Box */
+
+/* Big Number */
+.big-number {
+    @apply font-light lg:text-4xl md:text-3xl text-2xl my-4 text-secondaryFontColor;
+}
+.big-number-label {
+    @apply text-sm text-secondaryFontColor font-bold mb-3;
+}
+.big-number-stats {
+    @apply relative flex text-secondaryFontColor;
+}
+.big-number-percentage {
+    @apply text-xl text-secondaryFontColor font-bold w-full;
+}
+.big-number-icon {
+    @apply bg-grayscaleOneColor text-secondaryFontColor text-xs mr-1 py-1 px-3 rounded-full;
+}
+.big-number-value {
+    @apply text-xl font-normal text-secondaryFontColor;
+}
+/* Big Number */
+
+/* Date Filter  */
+.date-filter-container {
+    @apply flex w-full py-1;
+}
+.date-fitler-input {
+    @apply border-none relative py-1 h-11 px-2 w-full outline-none border border-primaryBorderColor rounded bg-filterBackgroundColor text-sm text-secondaryFontColor;
+}
+/* Date Filter */
+
+.tileElement {
+    @apply border border-tileBorderColor bg-tileBackgroundColor rounded w-full p-4;
+}
+
+
+#elegance {
+    font-family: 'Poppins', sans-serif;
+}
+
+</style>
