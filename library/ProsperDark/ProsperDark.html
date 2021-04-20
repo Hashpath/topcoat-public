@@ -15,7 +15,12 @@
         <ProsperDarkNavBar></ProsperDarkNavBar>
 
         <div class="overflow-hidden h-80 bg-secondaryColor pr-10 pl-10 mx-auto secondary-fonts">
-            <CacheControls iconClass='fa fa-redo transform -rotate-45 text-primaryFontColor' />
+            <CacheControls
+                iconClass='fa fa-redo transform -rotate-45'
+                position='float-right relative top-10'
+                textColor='text-primaryFontColor'
+                buttonColors='text-primaryFontColor bg-primaryButtonColor'
+                minimal />
         </div>     
 
         <div class="pr-10 pl-10 mx-auto -mt-60 secondary-fonts">
@@ -25,11 +30,11 @@
             </div>
 
             <div class="mt-5">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-3 gap-4 secondary-fonts">
+                <!-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-3 gap-4 secondary-fonts">
                     <slot name='stats'></slot>
-                </div>
+                </div> -->
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5 secondary-fonts">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5 secondary-fonts pb-5">
                     <slot></slot>
                 </div>
             </div>
@@ -67,8 +72,8 @@
     --page-section-color: var(--primary-color);
     --page-background-color: var(--secondary-color);
 
-    --primary-button-color: transparent;
-    --secondary-button-color: #3b82f6;
+    --primary-button-color: #3b82f6;
+    --secondary-button-color: transparent;
 
     --tile-border-color: transparent;
     --tile-background-color: var(--primary-color);
@@ -96,88 +101,10 @@ body {
     @apply bg-primaryColor;
 }
 
-/* Cache Control */
-.cache-control-container {
-    @apply w-full mx-auto flex flex-wrap pt-11;
-}
-.cache-control-content {
-    @apply md:flex flex-row flex-wrap items-center ml-auto;
-}
-
-.cache-control-text-body {
-    @apply text-primaryFontColor flex;
-}
-
-.cache-control-button {
-    @apply ml-3 bg-secondaryButtonColor text-primaryFontColor rounded w-8 h-8 flex justify-center items-center;
-}
-
-.cache-control-preview {
-    @apply flex flex-row-reverse;
-}
-
-.cache-control-text {
-    @apply text-xs text-primaryFontColor text-sm;
-}
-/* Cache Control */
-
-/* Toggle Switch */
-.toggle-switch-container {
-    @apply flex justify-start items-start;
-}
-.toggle-switch {
-    @apply relative rounded-full w-12 h-7 transition duration-200 ease-linear;
-}
-.toggle-switch-label {
-    @apply absolute top-1.5 bg-filterBackgroundColor border-2 w-4 h-4 rounded-full transition transform duration-100 ease-linear cursor-pointer;
-}
-.toggle-switch-input {
-    @apply appearance-none border-filterBorderColor w-full h-full focus:outline-none;
-}
-.toggle-status-text {
-    @apply text-filterFontColor font-semibold flex self-center pr-2;
-}
-.toggle-active-bg {
-    @apply bg-grayscaleTwoColor;
-}
-.toggle-inactive-bg {
-    @apply bg-grayscaleThreeColor;
-}
-.toggle-active {
-    @apply bg-grayscaleOneColor border-grayscaleOneColor right-1;
-}
-.toggle-inactive {
-    @apply bg-grayscaleOneColor border-grayscaleOneColor left-1;
-}
-/* Toggle Switch */
-
-/* Big Number */
-.big-number {
-    @apply font-light lg:text-4xl md:text-3xl text-2xl my-4 text-primaryFontColor;
-}
-.big-number-label {
-    @apply text-sm text-primaryFontColor mb-3;
-}
-.big-number-stats {
-    @apply relative flex;
-}
-.big-number-percentage {
-    @apply text-xl text-primaryFontColor w-full;
-}
-.big-number-icon {
-    @apply bg-grayscaleOneColor text-grayscaleTwoColor text-xs mr-1 py-1 px-3 rounded-full;
-}
-.big-number-value {
-    @apply text-xl font-normal text-primaryFontColor;
-}
-/* Big Number */
-
 .tileElement {
-    @apply border border-tileBorderColor bg-tileBackgroundColor rounded w-full p-4;
+    @apply border-tileBorderColor bg-tileBackgroundColor rounded text-primaryFontColor;
 }
-#darkTheme {
-    font-family: 'Poppins', sans-serif;
-}
+
 
 /* Legacy Date Filter */
 /* Date Range Picker overrides */

@@ -25,14 +25,14 @@
     >
       <a
         v-for="page in project.nav"
-        :class="navSelected(page.url, 'bg-primaryHighlightColor', 'bg-primaryButtonColor')"
+        :class="navSelected(page.url, 'bg-primaryHighlightColor', 'bg-secondaryButtonColor')"
         :href="'/' + page.url"
         class="hover:text-primaryFontColor px-2 py-4 h-full flex items-center justify-center hover:bg-primaryHighlightColor">
 
         <i :class="'icon fas text-primaryFontColor text-base ' + page.icon_class" />
         <span class="fonst-small pl-2">{{ page.title }} </span>
       </a>
-      <a href="/logout" class="hover:text-primaryFontColor px-2 py-4 h-full flex items-center justify-center bg-primaryButtonColor hover:bg-primaryHighlightColor md:hidden">
+      <a href="/logout" class="hover:text-primaryFontColor px-2 py-4 h-full flex items-center justify-center bg-secondaryButtonColor hover:bg-primaryHighlightColor md:hidden">
         <i class="fa fa-user"></i>
         <span class="pl-2">Log Out</span>
       </a>

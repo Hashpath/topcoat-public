@@ -12,22 +12,27 @@
                 </div>
             </div>
         </div>
-
-        <!--div class="container mx-auto h-full px-10 pt-10 pb-1">
+<!-- 
+        <div class="container mx-auto h-full px-10 pt-10 pb-1">
             <div class="p-4">
                 <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 secondary-fonts">
                     <slot name="stats"></slot>
                 </div>
             </div>
-        </div-->
+        </div> -->
 
         <div class="container mx-auto h-full min-h-screen p-10">
-            <div class="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-4 secondary-fonts">
+            <div class="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-4 secondary-fonts pb-5">
                 <slot></slot>
             </div>
         </div>
 
-        <CacheControls />
+        <CacheControls
+            position='fixed right-3 bottom-3'
+            buttonColors='bg-primaryColor text-secondaryFontColor border-primaryBorderColor'
+            backgroundColor='bg-secondaryColor text-secondaryFontColor'
+            textColor='text-secondaryFontColor'
+        />
         <!-- Footer can be used here -->
     </div>
 </div>
@@ -40,7 +45,7 @@
     --primary-font-color: #27272A;
 
     --secondary-color: #27272A;
-    --secondary-highlight-color: #18181B;
+    --secondary-highlight-color: var(--grayscale-three-color);
     --secondary-border-color: #A1A1AA;
     --secondary-font-color: #FFFFFF;
 
@@ -59,12 +64,11 @@
     --page-section-color: #F4F4F5;
     --page-background-color: #FFFFFF;
 
-    --primary-button-color: transparent;
-    --secondary-button-color: var(--primary-color);
+    --primary-button-color: var(--primary-color);
+    --secondary-button-color: var(--grayscale-two-color);
 
     --tile-border-color: var(--primary-border-color);
     --tile-background-color: var(--page-section-color);
-
 
 }
 
@@ -87,84 +91,6 @@
     @apply rounded;
 }
 
-/* ---- logout button ---- */
-.logout-button {
-    @apply bg-primaryColor;
-}
-
-/* Cache Control */
-.cache-control-container {
-    @apply w-full mx-auto flex flex-wrap md:px-10 lg:px-10 px-8;
-}
-.cache-control-content {
-    @apply md:flex flex-row flex-wrap items-center ml-auto;
-}
-
-.cache-control-body {
-    @apply py-3 px-5 bg-secondaryColor rounded-md fixed bottom-3 right-10;
-}
-
-.cache-control-button {
-    @apply absolute border-solid border-4 border-primaryBorderColor -left-10 text-secondaryFontColor bg-primaryColor py-2 px-3 shadow-2xl rounded-full hover:text-secondaryFontColor focus:outline-none;
-}
-
-.cache-control-text {
-    @apply text-xs text-secondaryFontColor;
-}
-/* Cache Control */
-
-
-/* Toggle Switch */
-.toggle-switch-container {
-    @apply flex justify-center items-center;
-}
-.toggle-switch {
-    @apply relative rounded-full w-12 h-6 transition duration-200 ease-linear;
-}
-.toggle-switch-label {
-    @apply absolute bg-grayscaleOneColor border-2 mb-2 w-6 h-6 rounded-full transition transform duration-100 ease-linear cursor-pointer;
-}
-.toggle-switch-input {
-    @apply appearance-none w-full h-full focus:outline-none;
-}
-.toggle-status-text {
-    @apply font-semibold flex self-center pr-2;
-}
-.toggle-active-bg {
-    @apply bg-secondaryButtonColor;
-}
-.toggle-inactive-bg {
-    @apply bg-grayscaleThreeColor;
-}
-.toggle-active {
-    @apply border-grayscaleOneColor bg-grayscaleOneColor right-0;
-}
-.toggle-inactive {
-    @apply bg-grayscaleOneColor left-0;
-}
-/* Toggle Switch */
-
-/* Big Number */
-.big-number {
-    @apply font-light lg:text-4xl md:text-3xl text-2xl my-4 text-primaryColor;
-}
-.big-number-label {
-    @apply text-sm text-secondaryFontColor font-bold mb-3;
-}
-.big-number-stats {
-    @apply relative flex;
-}
-.big-number-percentage {
-    @apply text-xl text-secondaryFontColor font-bold w-full;
-}
-.big-number-icon {
-    @apply bg-secondaryColor text-primaryFontColor text-xs mr-1 py-1 px-3 rounded-full;
-}
-.big-number-value {
-    @apply text-xl font-normal text-secondaryFontColor;
-}
-/* Big Number */
-
 /* Date Filter  */
 .date-filter-container {
     @apply flex w-full py-1;
@@ -176,7 +102,7 @@
 
 
 .tileElement {
-    @apply border border-tileBorderColor bg-tileBackgroundColor rounded w-full p-4;
+  @apply border-tileBorderColor bg-tileBackgroundColor rounded;
 }
 
 /* Legacy Date Filter */

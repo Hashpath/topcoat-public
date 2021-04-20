@@ -15,7 +15,7 @@
             </div>
 
             <div class="hidden md:block">
-                <a href="/logout" class="bg-primaryButtonColor hover:text-secondaryHighlightColor text-primaryFontColor">
+                <a href="/logout" class="bg-secondaryButtonColor hover:text-secondaryHighlightColor text-primaryFontColor">
                     <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23">
                     <g id="Solid" transform="translate(-24 -24)">
                       <path id="Path_9917" data-name="Path 9917" class="cls-1" d="M137.83,146.308l-4.471-4.471a1.185,1.185,0,1,0-1.676,1.676l2.447,2.447H121.185a1.185,1.185,0,0,0,0,2.371h12.944l-2.447,2.447a1.185,1.185,0,0,0,1.677,1.676l4.471-4.471A1.185,1.185,0,0,0,137.83,146.308Z" transform="translate(-91.177 -111.646)"/>
@@ -37,7 +37,7 @@
         >
             <a
                 v-for="page in project.nav"
-                :class="navSelected(page.url, 'text-secondaryFontColor border-secondaryHighlightColor', 'bg-primaryButtonColor')"
+                :class="navSelected(page.url, 'text-secondaryFontColor border-secondaryHighlightColor', 'bg-secondaryButtonColor')"
                 :href="'/' + page.url"
                 class="w-max border-b border-primaryColor hover:text-primaryFontColor py-4 px-2 font-semibold h-full flex items-center justify-center hover:text-secondaryFontColor hover:border-secondaryHighlightColor">
                 {{ page.title }}

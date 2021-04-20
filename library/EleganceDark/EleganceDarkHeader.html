@@ -1,3 +1,13 @@
+{{ config(
+        vars = {
+            "label_color" : "white",
+            "line_colors": [ "lightgray", "lightgray", "lightgray" ],
+            "bar_colors": [ "#fdba74", "#818cf8" ],
+            "fill_colors": [ "#fdba74", "#818cf8" ]
+        }
+   )
+}}
+
 <div class="primary-fonts">
   <div class="text-primaryFontColor md:items-center px-2 md:px-40">        
       <div class="flex justify-between items-center h-20">
@@ -25,14 +35,14 @@
     >
       <a
         v-for="page in project.nav"
-        :class="navSelected(page.url, 'bg-primaryHighlightColor', 'bg-primaryButtonColor')"
+        :class="navSelected(page.url, 'bg-primaryHighlightColor', 'bg-secondaryButtonColor')"
         :href="'/' + page.url"
         class="hover:text-primaryFontColor px-2 py-4 h-full flex items-center justify-center rounded-md hover:bg-primaryHighlightColor">
 
         <i :class="'icon fas text-primaryFontColor text-base ' + page.icon_class" />
         <span class="fonst-small pl-2">{{ page.title }} </span>
       </a>
-      <a href="/logout" class="hover:text-primaryFontColor bg-primaryButtonColor px-2 py-4 h-full flex items-center justify-center rounded-md hover:bg-primaryHighlightColor md:hidden">
+      <a href="/logout" class="hover:text-primaryFontColor bg-secondaryButtonColor px-2 py-4 h-full flex items-center justify-center rounded-md hover:bg-primaryHighlightColor md:hidden">
         <i class="fa fa-user"></i>
         <span class="pl-2">Log Out</span>
       </a>

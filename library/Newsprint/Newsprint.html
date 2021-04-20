@@ -47,11 +47,11 @@
     --page-section-color: var(--grayscale-one-color);
     --page-background-color: var(--primary-color);
 
-    --primary-button-color: transparent;
-    --secondary-button-color: #3b82f6;
+    --primary-button-color: #3b82f6;
+    --secondary-button-color: transparent;
 
     --tile-border-color: transparent;
-    --tile-background-color: transparent;
+    --tile-background-color: var(--page-section-color);
 }
 
 .primaryFilterRadius {
@@ -76,38 +76,8 @@ svg, path {
     @apply fill-current text-primaryFontColor;
 }
 
-/* Toggle Switch */
-.toggle-switch-container {
-    @apply flex justify-center items-center;
-}
-.toggle-switch {
-    @apply relative rounded-full w-12 h-7 transition duration-200 ease-linear;
-}
-.toggle-switch-label {
-    @apply absolute top-1.5  border-2 w-4 h-4 rounded-full transition transform duration-100 ease-linear cursor-pointer;
-}
-.toggle-switch-input {
-    @apply appearance-none w-full h-full focus:outline-none;
-}
-.toggle-status-text {
-    @apply font-semibold flex self-center pr-2 text-filterFontColor;
-}
-.toggle-active-bg {
-    @apply bg-secondaryButtonColor;
-}
-.toggle-inactive-bg {
-    @apply bg-grayscaleTwoColor;
-}
-.toggle-active {
-    @apply bg-grayscaleOneColor border-grayscaleOneColor right-1;
-}
-.toggle-inactive {
-    @apply bg-grayscaleOneColor border-grayscaleOneColor left-1;
-}
-/* Toggle Switch */
-
 .tileElement {
-    @apply border border-tileBorderColor bg-tileBackgroundColor rounded w-full p-4;
+    @apply border-tileBorderColor bg-tileBackgroundColor rounded my-3;
 }
 
 </style>

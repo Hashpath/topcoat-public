@@ -19,7 +19,7 @@
             <a
               v-for="page in project.nav"
               class="items-center px-3 py-2 h-14 flex justify-center hover:text-primaryFontColor lg:justify-start lg:w-full text-center hover:bg-primaryHighlightColor text-primaryFontColor opacity-70 hover:opacity-100 border-none"
-              :class="navSelected(page.url, 'bg-primaryHighlightColor text-primaryFontColor opacity-100 border-none', 'bg-primaryButtonColor opacity-70')" :href="'/' + page.url"><i :class="'icon fas text-base ' + page.icon_class" /> <span class="hidden pl-2 text-center" :class="{'lg:block' : isVisible}">{{ page.title }} </span> </a>
+              :class="navSelected(page.url, 'bg-primaryHighlightColor text-primaryFontColor opacity-100 border-none', 'bg-secondaryButtonColor opacity-70')" :href="'/' + page.url"><i :class="'icon fas text-base ' + page.icon_class" /> <span class="hidden pl-2 text-center" :class="{'lg:block' : isVisible}">{{ page.title }} </span> </a>
           </ul>
         </div>
       </nav>

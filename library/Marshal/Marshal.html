@@ -18,7 +18,7 @@
         <!-- Filters -->
         <div class="container mx-auto h-full max-w-screen-2xl lg:px-9 md:px-6 px-6 pb-1" v-if='!noFilters'>
             <div class="bg-secondaryColor p-4 rounded-xl">
-                <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4 secondary-fonts">
+                <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4 primary-fonts">
                     <slot name='filters' />
                 </div>
             </div>
@@ -30,7 +30,7 @@
                     <slot name='stats' />
                 </div>
             </div>
-        </div -->
+        </div> -->
 
         <!-- Body -->
         <div class="container mx-auto h-full max-w-screen-2xl min-h-screen p-9">
@@ -48,7 +48,7 @@
     --primary-color: var(--grayscale-three-color);
     --primary-highlight-color: #34D399;
     --primary-border-color: transparent;
-    --primary-font-color: #D1D5DB;
+    --primary-font-color: var(--grayscale-three-color);
 
     --secondary-color: #10B981;
     --secondary-highlight-color: var(--grayscale-three-color);
@@ -70,11 +70,11 @@
     --page-section-color: var(--secondary-color);
     --page-background-color: #FFFFFF;
 
-    --primary-button-color: transparent;
-    --secondary-button-color: #3b82f6;
+    --primary-button-color: #3b82f6;
+    --secondary-button-color: transparent;
 
-    --tile-border-color: var(--secondary-border-color);
-    --tile-background-color: var(--primary-border-color);
+    --tile-border-color: var(--primary-border-color);
+    --tile-background-color: var(--grayscale-one-color);
 }
 
     /* Fonts */
@@ -95,79 +95,6 @@
         @apply rounded-3xl;
     }
 
-
-    /* Cache Control */
-    .cache-control-container {
-        @apply w-full mx-auto flex flex-wrap md:mt-2 fixed sm:relative bottom-3 right-3 z-20;
-    }
-    .cache-control-content {
-        @apply md:flex flex-row flex-wrap items-center ml-auto;
-    }
-
-    .cache-control-body {
-        @apply py-2 pl-2 pr-3 bg-grayscaleOneColor rounded-full bottom-3;
-    }
-
-    .cache-control-button {
-        @apply border-solid border-4 border-grayscaleOneColor text-grayscaleOneColor bg-secondaryButtonColor py-2 px-3 shadow-2xl rounded-full hover:bg-grayscaleThreeColor hover:text-primaryHighlightColor focus:outline-none;
-    }
-
-    .cache-control-text {
-        @apply text-xs text-grayscaleThreeColor;
-    }
-    /* Cache Control */
-
-    /* Toggle Switch */
-    .toggle-switch-container {
-        @apply flex justify-center items-center;
-    }
-    .toggle-switch {
-        @apply relative rounded-full w-40 h-11 transition duration-200 ease-linear;
-    }
-    .toggle-switch-label {
-        @apply transition duration-500 absolute bg-filterBackgroundColor border-4 mt-1 w-9 h-9 rounded-full transition transform duration-100 ease-linear cursor-pointer translate-x-0 border-secondaryBorderColor translate-x-0;
-    }
-    .toggle-switch-input {
-        @apply appearance-none w-full h-full focus:outline-none;
-    }
-    .toggle-status-text {
-        @apply font-semibold flex self-center pr-2 text-grayscaleOneColor;
-    }
-    .toggle-active {
-        @apply border-secondaryBorderColor bg-filterBackgroundColor right-1;
-    }
-    .toggle-inactive {
-        @apply bg-filterBackgroundColor left-1;
-    }
-    .toggle-active-bg {
-        @apply bg-grayscaleThreeColor;
-    }
-    .toggle-inactive-bg {
-        @apply bg-filterBackgroundColor;
-    }
-    /* Toggle Switch */
-
-    /* Big Number */
-    .big-number {
-        @apply font-light text-primaryFontColor lg:text-4xl md:text-3xl text-2xl my-4 text-secondaryColor;
-    }
-    .big-number-label {
-        @apply text-sm text-grayscaleThreeColor font-bold mb-3;
-    }
-    .big-number-stats {
-        @apply relative flex;
-    }
-    .big-number-percentage {
-        @apply text-xl text-grayscaleThreeColor font-bold w-full;
-    }
-    .big-number-icon {
-        @apply bg-primaryColor text-primaryFontColor text-xs mr-1 py-1 px-3 rounded-full hover:bg-grayscaleThreeColor;
-    }
-    .big-number-value {
-        @apply text-xl font-normal text-grayscaleThreeColor;
-    }
-    /* Big Number */
-
     /* Date Filter  */
     .date-filter-container {
         @apply flex w-full;
@@ -176,6 +103,10 @@
         @apply px-1 placeholder-filterFontColor text-grayscaleThreeColor relative bg-filterBackgroundColor rounded-3xl text-sm h-11  outline-none focus:outline-none w-full pl-3;
     }
     /* Date Filter */
+
+    .tileElement {
+        @apply border-tileBorderColor bg-tileBackgroundColor rounded-3xl;
+    }
 
 
     /* Legacy Date Filter */

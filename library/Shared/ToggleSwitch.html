@@ -1,13 +1,13 @@
-<div class="toggle-switch-container">
-    <p class="toggle-status-text" v-if='!hideStatusText'>
+<div class="flex justify-center items-center text-filterFontColor">
+    <p class="font-semibold flex self-center pr-2" v-if='!hideStatusText'>
         {{ getText() }}
     </p>
-    <div class="toggle-switch"
-        :class="[toggle ? 'toggle-active-bg' : 'toggle-inactive-bg']"
+    <div class="relative rounded-full w-12 h-6 transition duration-200 ease-linear"
+        :class="[toggle ? 'bg-grayscaleThreeColor right-0' : 'bg-grayscaleTwoColor']"
     >
-        <label for="toggle" class="toggle-switch-label"
-            :class="[toggle ? 'toggle-active' : 'toggle-inactive']"></label>
-        <input type="checkbox" id="toggle" name="toggle" class="toggle-switch-input" @click="toggle = !toggle">
+        <label for="toggle" class="absolute bg-grayscaleOneColor border-2 w-6 h-6 rounded-full transition transform duration-100 ease-linear cursor-pointer border-grayscaleThreeColor border"
+            :class="[toggle ? 'bg-grayscaleOneColor right-0' : 'bg-grayscaleOneColor left-0']"></label>
+        <input type="checkbox" id="toggle" name="toggle" class="appearance-none w-full h-full focus:outline-none" @click="toggle = !toggle">
     </div>
 </div>
 
