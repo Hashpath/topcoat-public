@@ -1,12 +1,21 @@
-<div style="padding-top: 6px;">
-  <a-switch v-model="checked" /> <span class="toggle-label">{{ metadata.title }}</span>
+<div class="flex justify-start items-start text-filterFontColor">
+    <p class="font-semibold flex self-center pr-2">
+        {{ metadata.title }}
+    </p>
+    <div class="relative rounded-full w-12 h-6 transition duration-200 ease-linear"
+        :class="[checked_internal ? 'bg-grayscaleThreeColor right-0' : 'bg-grayscaleTwoColor']"
+    >
+        <label for="toggle" class="absolute bg-grayscaleOneColor border-2 w-6 h-6 rounded-full transition transform duration-100 ease-linear cursor-pointer border-grayscaleThreeColor border"
+            :class="[checked_internal ? 'bg-grayscaleOneColor right-0' : 'bg-grayscaleOneColor left-0']"></label>
+        <input type="checkbox" id="toggle" name="toggle" class="appearance-none w-full h-full focus:outline-none" v-model='checked'>
+    </div>
 </div>
 
 <script type='visualization/javascript'>
 export default {
     data() {
       return {
-          checked_internal: false 
+          checked_internal: false,
       }
     },
     computed: {

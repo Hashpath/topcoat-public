@@ -1,0 +1,87 @@
+<form class="flex relative h-9 primaryFilterRadius">
+    <span class="z-10 font-normal text-center text-filterFontColor absolute right-6 top-1 rounded text-base items-center justify-center">
+        <i class='text-sm fas fa-search'></i>
+    </span>
+    <input
+        type="text"
+        :placeholder="metadata.placeholder || 'Search'"
+        class="primaryFilterRadius w-full text-filterFontColor bg-filterBackgroundColor border border-filterBorderColor flex justify-around items-center pl-4 focus:outline-none hover:bg-filterHighlightColor hover:text-filterFontHighlightColor"
+        v-model='tableQuery'
+        @input='search'
+    />
+    <div v-if='tableRows && tableRows.length && tableQuery' class="shadow-xl bg-pageSectionColor border-filterBorderColor border bg-filterFontColor mt-2 rounded p-4 absolute left-0 top-12 z-50 w-full h-max">
+        <div
+            class="flex justify-between hover:bg-filterHighlightColor p-1 cursor-pointer rounded"
+            v-for='(row, index) in tableRows'
+        >
+            <div class="m-2" v-if='row.name'>{{ row.name }}</div>
+            <div class="m-2"v-if='row.location' >{{ row.location }}</div>
+        </div>
+    </div>
+</form>
+
+<script type='visualization/javascript'>
+export default {
+    data: () => ({
+        text: '',
+        text_internal: null,
+        tableRows: [],
+    }),
+    methods: {
+        search() {
+            const text = this.tableQuery.toLowerCase();
+            let data = [];
+            if (text) {
+            
+                data = this.getDataFromColumn('names', 'locations', text) || [];
+                if (data.length < 1) {
+                    data = this.getDataFromColumn('locations', 'names', text);
+                }
+                if (data) {
+                    data = data.filter(elem => typeof elem != 'undefined');
+                    this.tableRows = data;
+                    console.log(this.tableRows);
+                }
+            }
+        },
+        getDataFromColumn(column, secondColumn, text) {
+            return this[column].map((name, index) => {
+                name = name.toLowerCase();
+                if (name.includes(text)) {
+                    return {
+                        name,
+                        location: this[secondColumn][index],
+                    }
+                }
+            });
+        },
+        onVisualizationInit() {
+            const initial_value = this.getFilterValue("tableQuery");
+            if (initial_value) {
+                this.text_internal = initial_value;
+                this.setFilterValue("tableQuery", this.text_internal, true);
+                return this.text_internal;
+            }
+        },
+    },
+    computed: {
+        tableQuery: {
+            get() {
+                return this.text_internal;
+            },
+            set(value) {
+                this.text_internal = value;
+                this.setFilterValue("tableQuery", this.text_internal, true);
+            }
+        },
+        names() {
+            const column_name = this.findColumnByTag('names');
+            if (column_name) return this.getColumn(column_name);
+        },
+        locations() {
+            const column_name = this.findColumnByTag('locations');
+            if (column_name) return this.getColumn(column_name);
+        }
+    }
+}
+</script>

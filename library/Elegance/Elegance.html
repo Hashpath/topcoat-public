@@ -46,7 +46,7 @@
     --grayscale-three-color: #1f2937;
     --grayscale-hover-color: var(--grayscale-three-color);
 
-    --filter-background-color: transparent;
+    --filter-background-color: var(--page-section-color);
     --filter-menu-color: var(--page-section-color);
     --filter-highlight-color: #eff6ff;
     --filter-font-highlight-color: var(--grayscale-three-color);
@@ -85,61 +85,8 @@ body {
     @apply bg-pageBackgroundColor;
 }
 
-/* Sort Box */
-.sort-container {
-    @apply relative block px-3 border-filterBorderColor border appearance-none h-9 w-full bg-filterBackgroundColor text-filterFontColor rounded leading-tight focus:outline-none hover:bg-filterHighlightColor;
-}
-.sort-button {
-    @apply relative px-4 py-2 inline-flex w-full rounded-lg focus:z-10 focus:outline-none rounded;
-}
-.sort-arrow {
-    @apply pointer-events-none absolute top-3 right-3 flex text-sm px-2 text-filterFontColor;
-}
-.sort-menu {
-    @apply absolute border-filterBorderColor border w-full rounded z-50 block appearance-none bg-filterMenuColor text-filterFontColor leading-tight focus:outline-none;
-}
-.sort-menu-item {
-    @apply relative px-4 py-3 inline-flex w-full focus:z-10 focus:outline-none border-b-2 border-filterBorderColor focus:text-secondaryFontColor hover:text-secondaryFontColor hover:bg-filterHighlightColor;
-}
-/* Sort Box */
-
-/* Big Number */
-.big-number {
-    @apply font-light lg:text-4xl md:text-3xl text-2xl my-4 text-secondaryFontColor;
-}
-.big-number-label {
-    @apply text-sm text-secondaryFontColor font-bold mb-3;
-}
-.big-number-stats {
-    @apply relative flex text-secondaryFontColor;
-}
-.big-number-percentage {
-    @apply text-xl text-secondaryFontColor font-bold w-full;
-}
-.big-number-icon {
-    @apply bg-grayscaleOneColor text-secondaryFontColor text-xs mr-1 py-1 px-3 rounded-full;
-}
-.big-number-value {
-    @apply text-xl font-normal text-secondaryFontColor;
-}
-/* Big Number */
-
-/* Date Filter  */
-.date-filter-container {
-    @apply flex w-full py-1;
-}
-.date-fitler-input {
-    @apply border-none relative py-1 h-11 px-2 w-full outline-none border border-primaryBorderColor rounded bg-filterBackgroundColor text-sm text-secondaryFontColor;
-}
-/* Date Filter */
-
 .tileElement {
     @apply border-tileBorderColor bg-tileBackgroundColor rounded;
-}
-
-
-#elegance {
-    font-family: 'Poppins', sans-serif;
 }
 
 </style>

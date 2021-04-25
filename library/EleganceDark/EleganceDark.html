@@ -46,7 +46,7 @@
     --grayscale-three-color: #9CA3AF;
     --grayscale-hover-color: #1F2937;
 
-    --filter-background-color: transparent;
+    --filter-background-color: var(--page-section-color);
     --filter-menu-color: var(--page-section-color);
     --filter-highlight-color: var(--grayscale-hover-color);
     --filter-font-highlight-color: #FFFFFF;
@@ -83,16 +83,6 @@
 body {
     @apply bg-primaryColor;
 }
-
-
-/* Date Filter  */
-.date-filter-container {
-    @apply flex w-full py-1;
-}
-.date-fitler-input {
-    @apply border-none relative py-1 h-11 px-2 w-full outline-none border border-primaryBorderColor rounded bg-filterBackgroundColor text-sm text-secondaryFontColor;
-}
-/* Date Filter */
 
 .tileElement {
     @apply border-tileBorderColor bg-tileBackgroundColor rounded;

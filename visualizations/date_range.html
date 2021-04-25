@@ -1,6 +1,6 @@
-<div class="inline-flex">
-    <div class="inline-block">
-      <a-dropdown class="flex-1" :trigger="[ 'click' ]" v-model="pickerOpened" @visibleChange="onOpen">
+<div class="inline-flex date-filter-container w-full h-9" v-show='show'>
+    <div class="inline-block w-max h-full">
+      <a-dropdown class="flex-1 w-max" :trigger="[ 'click' ]" v-model="pickerOpened" @visibleChange="onOpen">
           <a-menu v-model="datePresetModel" @click="presetChange($event, false)" :style="{ minHeight: '371px'}" slot="overlay">
               <a-menu-item key="yesterday">Yesterday</a-menu-item>
               <a-menu-item key="last7days">Last 7 Days</a-menu-item>
@@ -11,32 +11,32 @@
               <a-menu-item key="ytd">Year to Date</a-menu-item>
               <a-menu-item key="custom">Custom Range</a-menu-item>
           </a-menu>
-          <a-button type="primary" @click="onClose"> {{ presetValue }} <a-icon v-if="datePreset" type="down" /> </a-button>
+          <a-button class="w-max h-full bg-filterHighlightColor text-filterFontHighlightColor border-filterBorderColor outline-none rounded-r-none" @click="onClose"> {{ presetValue }} <a-icon v-if="datePreset" type="down" /> </a-button>
       </a-dropdown>
     </div>
-    <div class="inline-block" >
-        <a-range-picker :allowClear="false" dropdownClassName="wld-date-picker" @change="onDateChange" :open="pickerOpened" @openChange="onOpen" :separator="'-'" :format="'MM/DD/YYYY'" :value="[ startDate, endDate ]">
-            <a-icon slot="suffixIcon" type="calendar" />
+    <div class="inline-block text-filterFontHighlightColor primaryFilterRadius h-9">
+        <a-range-picker class="h-9" :allowClear="false" dropdownClassName="wld-date-picker bg-filterBackgroundColor" @change="onDateChange" :open="pickerOpened" @openChange="onOpen" :separator="'-'" :format="'MM/DD/YYYY'" :value="[ startDate, endDate ]">
+            <a-icon slot="suffixIcon" type="calendar" class="text-filterFontColor" />
             <template slot="renderExtraFooter">
                 <div style="padding: 2.0rem; padding-right: 1.0rem;">
                 <span style="padding-right: 2.0rem;">Compare to previous</span>
                 <a-radio-group v-model="previousMode" button-style="solid">
-                  <a-radio-button :disabled="datePreset == 'mtd' || datePreset == 'ytd'" value="period">
+                  <a-radio-button :disabled="datePreset == 'mtd' || datePreset == 'ytd'" value="period" class="bg-filterHighlightColor text-filterFontHighlightColor hover:bg-filterHighlightColor hover:text-filterFontHighlightColor">
                     Period
                   </a-radio-button>
                   <a-radio-button value="year">
                     Year
                   </a-radio-button>
                 </a-radio-group>
-                <a-button class="wld-date-picker-apply-button" type="primary" @click="clickApply">
+                <a-button class="wld-date-picker-apply-button bg-filterHighlightColor text-filterFontHighlightColor hover:bg-filterHighlightColor hover:text-filterFontHighlightColor" @click="clickApply">
                     Apply
                   </a-button>
                 </div>
             </template>
         </a-range-picker>
     </div>
-    <div class="inline-block">
-        <div v-if="refStart && refEnd">ref. {{ refStart.format('MM/DD/YYYY') }} - {{ refEnd.format('MM/DD/YYYY') }}</div>
+    <div class="inline-block flex px-3 text-primaryFontColor">
+        <div v-if="refStart && refEnd" class="self-center">ref. {{ refStart.format('MM/DD/YYYY') }} - {{ refEnd.format('MM/DD/YYYY') }}</div>
     </div>
 </div>
 
@@ -52,8 +52,15 @@ export default {
           refStart: null,
           refEnd: null,
           prevDatePreset: null,
-          previousMode: null
+          previousMode: null,
+          show: false,
       }
+    },
+    mounted() {
+      const ref = this;
+      window.addEventListener('resize', function(event) {
+        ref.addColSpan();
+      }, true);
     },
     computed: {
       presetValue() {
@@ -86,10 +93,29 @@ export default {
         }
     },
     methods: {
+        addColSpan() {
+          const screenWidth = window.innerWidth;
+          let col = 'col-span-3';
+          if (screenWidth < 1024) col = 'col-span-1';
+
+          const dateFiler = document.querySelector('.date-filter-container');
+          const steps = 6; // Steps to reach parent
+          let parent = dateFiler ? dateFiler.parentNode : null;
+          if (parent) {
+            for (let index = 1; index < steps; index ++) {
+              parent = parent.parentNode;
+            }
+            parent.classList.add(col);
+            parent.classList.add('w-full');
+          }
+          this.show = true;
+        },
         onOpen(value) {
             // If not force close
             if (!this.forceClosed) {
               this.pickerOpened = true;
+            } else {
+              this.pickerOpened = false;
             }
         },
         onClose(event) {
@@ -251,7 +277,62 @@ export default {
               this.setFilterValue("prev_start_date", this.refStart.format('YYYY-MM-DD'), false);
               this.setFilterValue("prev_end_date", this.refEnd.format('YYYY-MM-DD'), true);
             }
+            setTimeout(() => { this.addColSpan() }, 500);
         }
     }
 }
 </script>
+
+
+<style>
+
+.wld-date-picker .ant-calendar-selected-day .ant-calendar-date,
+.wld-date-picker .ant-calendar-range .ant-calendar-in-range-cell::before,
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled),
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover,
+.ant-calendar-cell .ant-calendar-date:hover,
+.wld-date-picker .ant-calendar-selected-day .ant-calendar-date:hover,
+.ant-radio-button-wrapper-checked,
+.ant-radio-button-wrapper-checked:active,
+.ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled),
+.ant-dropdown-menu-item-selected,
+.ant-radio-group-solid:active {
+  @apply bg-filterHighlightColor text-filterFontHighlightColor border-filterBorderColor !important;
+}
+
+.ant-calendar-date {
+  @apply text-filterFontColor !important;
+}
+
+.ant-calendar-picker-input.ant-input {
+  @apply bg-filterBackgroundColor text-filterFontColor h-full border-filterBorderColor text-sm;
+}
+
+.ant-dropdown-menu {
+  @apply p-0 bottom-1;
+}
+
+.ant-dropdown-menu,
+.ant-calendar {
+  @apply border-filterBorderColor border bg-filterBackgroundColor text-filterFontColor;
+}
+
+.ant-dropdown-menu-item,
+.ant-calendar-header .ant-calendar-month-select,
+.ant-calendar-header .ant-calendar-year-select {
+  @apply text-filterFontColor;
+}
+
+.ant-dropdown-menu-item:hover {
+  @apply bg-filterHighlightColor text-filterFontHighlightColor !important;
+}
+
+.ant-calendar-last-month-cell {
+  @apply text-filterFontColor opacity-70; 
+}
+
+.ant-calendar-in-range-cell .ant-calendar-date {
+  @apply text-filterFontHighlightColor !important;
+}
+
+</style>
