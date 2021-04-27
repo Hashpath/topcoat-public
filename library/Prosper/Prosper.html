@@ -22,10 +22,12 @@
                 minimal />
         </div>     
 
-        <div class="pr-10 pl-10 mx-auto -mt-60">
+        <div class="pr-10 pl-10 mx-auto -mt-60 container mx-auto h-full ">
             <div class="mb-2 text-sm text-secondaryFontColor">Filters</div>
-            <div class="bg-pageSectionColor w-full rounded-md flex items-center grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 p-3 gap-4 secondary-fonts">
-                <slot name='filters'></slot>
+            <div class="bg-pageSectionColor p-4 rounded">
+                <div class="grid lg:grid-cols-4 md:grid-cols-1 sm:grid-cols-1 gap-4 secondary-fonts">
+                    <slot name="filters"></slot>
+                </div>
             </div>
 
             <div class="mt-5">
@@ -63,7 +65,7 @@
     --filter-background-color: #FFFFFF; 
     --filter-menu-color: var(--primary-color);
     --filter-highlight-color: #eff6ff;
-    --filter-font-highlight-color: var(--primary-font-color);
+    --filter-font-highlight-color: #90b1ff;
     --filter-font-color: var(--primary-font-color); 
     --filter-border-color: var(--primary-border-color); 
 

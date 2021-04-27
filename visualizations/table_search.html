@@ -1,24 +1,28 @@
-<form class="flex relative h-9 primaryFilterRadius">
+<div class="flex h-9 primaryFilterRadius">
     <span class="z-10 font-normal text-center text-filterFontColor absolute right-6 top-1 rounded text-base items-center justify-center">
         <i class='text-sm fas fa-search'></i>
     </span>
     <input
         type="text"
         :placeholder="metadata.placeholder || 'Search'"
-        class="primaryFilterRadius w-full text-filterFontColor bg-filterBackgroundColor border border-filterBorderColor flex justify-around items-center pl-4 focus:outline-none hover:bg-filterHighlightColor hover:text-filterFontHighlightColor"
+        class="primaryFilterRadius w-full text-filterFontColor bg-filterBackgroundColor border border-filterBorderColor flex justify-around items-center pl-4 focus:outline-none"
         v-model='tableQuery'
         @input='search'
     />
-    <div v-if='tableRows && tableRows.length && tableQuery' class="shadow-xl bg-pageSectionColor border-filterBorderColor border bg-filterFontColor mt-2 rounded p-4 absolute left-0 top-12 z-50 w-full h-max">
+    <div 
+        @mouseleave='tableRows = []'
+        v-if='tableRows && tableRows.length'
+        class="shadow-xl bg-filterBackgroundColor border-filterBorderColor border text-filterFontColor mt-2 rounded p-4 absolute left-0 top-12 z-50 max-w-60 max-h-48 overflow-auto">
         <div
-            class="flex justify-between hover:bg-filterHighlightColor p-1 cursor-pointer rounded"
+            class="flex justify-between hover:bg-filterHighlightColor hover:text-filterFontHighlightColor p-1 cursor-pointer rounded"
             v-for='(row, index) in tableRows'
+            @click='select(row)'
         >
-            <div class="m-2" v-if='row.name'>{{ row.name }}</div>
-            <div class="m-2"v-if='row.location' >{{ row.location }}</div>
+            <div class="m-2" :id='"name-"+index' v-if='row.name'>{{ highlightText(row.name, "name-"+index) }}</div>
+            <div class="m-2" :id='"location-"+index' v-if='row.location' >{{ highlightText(row.location, "location-"+index) }}</div>
         </div>
     </div>
-</form>
+</div>
 
 <script type='visualization/javascript'>
 export default {
@@ -26,13 +30,14 @@ export default {
         text: '',
         text_internal: null,
         tableRows: [],
+        tableQuery: '',
+        auto_height: true,
     }),
     methods: {
         search() {
             const text = this.tableQuery.toLowerCase();
             let data = [];
             if (text) {
-            
                 data = this.getDataFromColumn('names', 'locations', text) || [];
                 if (data.length < 1) {
                     data = this.getDataFromColumn('locations', 'names', text);
@@ -40,7 +45,6 @@ export default {
                 if (data) {
                     data = data.filter(elem => typeof elem != 'undefined');
                     this.tableRows = data;
-                    console.log(this.tableRows);
                 }
             }
         },
@@ -55,23 +59,40 @@ export default {
                 }
             });
         },
+        highlightText(text, id) {
+            const element = document.querySelector(`#${id}`);
+            if (element) {
+                const tableQuery = this.tableQuery.toLowerCase();
+                if (tableQuery) {
+                    const highlighted = text.toLowerCase().replace(tableQuery, `<span class="text-filterFontHighlightColor">${tableQuery}</span>`)
+                    return element.innerHTML = highlighted;
+                }
+            }
+            return text;
+        },
         onVisualizationInit() {
-            const initial_value = this.getFilterValue("tableQuery");
+            const initial_value = this.getFilterValue("selected");
             if (initial_value) {
                 this.text_internal = initial_value;
-                this.setFilterValue("tableQuery", this.text_internal, true);
+                this.setFilterValue("selected", encodeURI(this.text_internal), true);
                 return this.text_internal;
             }
         },
+        select(row) {
+            const selected = this.selected;
+            this.selected = row.name;
+            this.tableRows = [];
+            this.tableQuery = '';
+        }
     },
     computed: {
-        tableQuery: {
+        selected: {
             get() {
                 return this.text_internal;
             },
             set(value) {
-                this.text_internal = value;
-                this.setFilterValue("tableQuery", this.text_internal, true);
+                this.text_internal = encodeURI(value);
+                this.setFilterValue("selected", this.text_internal, true);
             }
         },
         names() {

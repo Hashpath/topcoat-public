@@ -11,7 +11,7 @@
               <a-menu-item key="ytd">Year to Date</a-menu-item>
               <a-menu-item key="custom">Custom Range</a-menu-item>
           </a-menu>
-          <a-button class="w-max h-full bg-filterHighlightColor text-filterFontHighlightColor border-filterBorderColor outline-none rounded-r-none" @click="onClose"> {{ presetValue }} <a-icon v-if="datePreset" type="down" /> </a-button>
+          <a-button class="w-max h-full bg-primaryButtonColor border-primaryButtonColor text-grayscaleOneColor outline-none rounded-r-none" @click="onClose"> {{ presetValue }} <a-icon v-if="datePreset" type="down" /> </a-button>
       </a-dropdown>
     </div>
     <div class="inline-block text-filterFontHighlightColor primaryFilterRadius h-9">
@@ -28,7 +28,7 @@
                     Year
                   </a-radio-button>
                 </a-radio-group>
-                <a-button class="wld-date-picker-apply-button bg-filterHighlightColor text-filterFontHighlightColor hover:bg-filterHighlightColor hover:text-filterFontHighlightColor" @click="clickApply">
+                <a-button class="wld-date-picker-apply-button border-primaryButtonColor bg-primaryButtonColor text-grayscaleOneColor hover:bg-primaryButtonColor hover:text-grayscaleOneColor" @click="clickApply">
                     Apply
                   </a-button>
                 </div>
@@ -54,6 +54,7 @@ export default {
           prevDatePreset: null,
           previousMode: null,
           show: false,
+          auto_height: true,
       }
     },
     mounted() {
@@ -94,21 +95,23 @@ export default {
     },
     methods: {
         addColSpan() {
-          const screenWidth = window.innerWidth;
-          let col = 'col-span-3';
-          if (screenWidth < 1024) col = 'col-span-1';
+          this.$nextTick(() => {
+            const screenWidth = window.innerWidth;
+            let col = 'col-span-3';
+            if (screenWidth < 1024) col = 'col-span-1';
 
-          const dateFiler = document.querySelector('.date-filter-container');
-          const steps = 6; // Steps to reach parent
-          let parent = dateFiler ? dateFiler.parentNode : null;
-          if (parent) {
-            for (let index = 1; index < steps; index ++) {
-              parent = parent.parentNode;
+            const dateFiler = document.querySelector('.date-filter-container');
+            const steps = 6; // Steps to reach parent
+            let parent = dateFiler ? dateFiler.parentNode : null;
+            if (parent) {
+              for (let index = 1; index < steps; index ++) {
+                parent = parent.parentNode;
+              }
+              parent.classList.add(col);
+              parent.classList.add('w-full');
             }
-            parent.classList.add(col);
-            parent.classList.add('w-full');
-          }
-          this.show = true;
+            this.show = true;
+          });
         },
         onOpen(value) {
             // If not force close
@@ -183,7 +186,7 @@ export default {
             this.setFilterValue("previous_mode", this.previousMode, false);
             this.setFilterValue("prev_start_date", this.refStart.format('YYYY-MM-DD'), false);
             this.setFilterValue("prev_end_date", this.refEnd.format('YYYY-MM-DD'), true);
-            console.log("Set values");
+
         },
         presetChange(event, first) {
             // Remember previous
@@ -277,7 +280,7 @@ export default {
               this.setFilterValue("prev_start_date", this.refStart.format('YYYY-MM-DD'), false);
               this.setFilterValue("prev_end_date", this.refEnd.format('YYYY-MM-DD'), true);
             }
-            setTimeout(() => { this.addColSpan() }, 500);
+            this.addColSpan();
         }
     }
 }
@@ -287,7 +290,6 @@ export default {
 <style>
 
 .wld-date-picker .ant-calendar-selected-day .ant-calendar-date,
-.wld-date-picker .ant-calendar-range .ant-calendar-in-range-cell::before,
 .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled),
 .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover,
 .ant-calendar-cell .ant-calendar-date:hover,
@@ -297,7 +299,11 @@ export default {
 .ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled),
 .ant-dropdown-menu-item-selected,
 .ant-radio-group-solid:active {
-  @apply bg-filterHighlightColor text-filterFontHighlightColor border-filterBorderColor !important;
+  @apply bg-primaryButtonColor text-grayscaleOneColor border-primaryButtonColor !important;
+}
+
+.wld-date-picker .ant-calendar-range .ant-calendar-in-range-cell::before {
+  @apply bg-primaryButtonColor text-grayscaleOneColor border-primaryButtonColor opacity-80 !important;
 }
 
 .ant-calendar-date {
@@ -324,7 +330,7 @@ export default {
 }
 
 .ant-dropdown-menu-item:hover {
-  @apply bg-filterHighlightColor text-filterFontHighlightColor !important;
+  @apply bg-primaryButtonColor text-grayscaleOneColor opacity-80 !important;
 }
 
 .ant-calendar-last-month-cell {
@@ -332,7 +338,7 @@ export default {
 }
 
 .ant-calendar-in-range-cell .ant-calendar-date {
-  @apply text-filterFontHighlightColor !important;
+  @apply text-grayscaleOneColor !important;
 }
 
 </style>

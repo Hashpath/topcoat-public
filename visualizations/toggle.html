@@ -1,4 +1,4 @@
-<div class="flex justify-start items-start text-filterFontColor">
+<div class="flex justify-start items-start text-filterFontColor relative top-1">
     <p class="font-semibold flex self-center pr-2">
         {{ metadata.title }}
     </p>
@@ -16,6 +16,7 @@ export default {
     data() {
       return {
           checked_internal: false,
+          auto_height: true,
       }
     },
     computed: {

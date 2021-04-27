@@ -10,8 +10,10 @@
     </div>
     <div class="pr-10 pl-10 mx-auto secondary-fonts">
         <div class="mb-2 text-sm text-primaryFontColor">Filters</div>
-        <div class="bg-pageSectionColor w-full rounded flex items-center grid md:grid-cols-1 lg:grid-cols-4 p-3 gap-4">
-            <slot name='filters'></slot>
+        <div class="bg-pageSectionColor p-4 rounded">
+            <div class="grid lg:grid-cols-4 md:grid-cols-1 sm:grid-cols-1 gap-4 secondary-fonts">
+                <slot name="filters"></slot>
+            </div>
         </div>
 
         <div class="mt-5">
@@ -49,9 +51,9 @@
     --filter-background-color: var(--page-section-color);
     --filter-menu-color: var(--page-section-color);
     --filter-highlight-color: var(--grayscale-hover-color);
-    --filter-font-highlight-color: #FFFFFF;
+    --filter-font-highlight-color: #ecb280;
     --filter-font-color: var(--primary-font-color);
-    --filter-border-color: var(--primary-border-color);
+    --filter-border-color: var(--grayscale-two-color);
 
     --page-section-color: var(--secondary-color);
     --page-background-color: #0F172A;
@@ -89,3 +91,27 @@ body {
 }
 
 </style>
+
+<script type='visualization/javascript'>
+    export default {
+        data: () => ({
+            filters: false,
+        }),
+        created() {
+            this.checkFilters();
+        },
+        methods: {
+            checkFilters() {
+                this.$nextTick(() => {
+                    const filters = this.$refs.filters;
+                    const childNodes = filters ? filters.childNodes : false;
+
+                    if (childNodes) {
+                        return this.filters = childNodes && childNodes.length > 0;
+                    }
+                }); 
+                return this.filters = true;
+            }
+        }
+    }
+</script>

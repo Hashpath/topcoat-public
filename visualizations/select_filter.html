@@ -1,6 +1,6 @@
 <div class="relative" @mouseleave='showMenu = false'>
     <div class="relative" @click="showMenu = !showMenu">
-        <div class="relative block px-3 border-filterBorderColor border appearance-none h-9 w-full bg-filterBackgroundColor text-filterFontColor rounded leading-tight focus:outline-none hover:bg-filterHighlightColor hover:text-filterFontHighlightColor primaryFilterRadius">
+        <div class="relative block px-3 border-filterBorderColor border appearance-none h-9 w-full bg-filterBackgroundColor text-filterFontColor rounded leading-tight focus:outline-none primaryFilterRadius">
             <button type="button" class="relative px-4 py-2 inline-flex w-full focus:z-10 focus:outline-none primaryFilterRadius">
                 <div class="flex">
                     <div class="input-placeholder">
@@ -38,7 +38,8 @@ export default {
     data() {
       return {
           showMenu: false,
-          selected_internal: null 
+          selected_internal: null,
+          auto_height: true,
       }
     },
     computed: {

@@ -25,8 +25,10 @@
 
         <div class="pr-10 pl-10 mx-auto -mt-60 secondary-fonts">
             <div class="mb-2 text-sm text-primaryFontColor">Filters</div>
-            <div class="bg-pageSectionColor w-full rounded flex items-center grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 p-3 gap-4">
-                <slot name='filters'></slot>
+            <div class="bg-pageSectionColor p-4 rounded">
+                <div class="grid lg:grid-cols-4 md:grid-cols-1 gap-4 secondary-fonts">
+                    <slot name="filters"></slot>
+                </div>
             </div>
 
             <div class="mt-5">
@@ -65,9 +67,9 @@
     --filter-background-color: var(--page-section-color);
     --filter-menu-color: var(--primary-color);
     --filter-highlight-color: var(--primary-highlight-color);
-    --filter-font-highlight-color: var(--primary-font-color);
+    --filter-font-highlight-color: #ecb280;
     --filter-font-color: var(--primary-font-color);
-    --filter-border-color: var(--primary-border-color);
+    --filter-border-color: var(--grayscale-two-color);
 
     --page-section-color: var(--primary-color);
     --page-background-color: var(--secondary-color);

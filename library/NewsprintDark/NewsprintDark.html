@@ -16,11 +16,11 @@
         </div>
     </div>
     <div class="mt-20 relative left-0 right-0 m-auto md:w-6/12 w-10/12 py-3">
-        <div class="text-center text-6xl font-bold text-primaryFontColor secondary-fonts">Dashboard</div>
+        <div class="text-center text-6xl font-bold text-primaryFontColor secondary-fonts">{{ page.title }}</div>
         <div class="text-secondaryFontColor text-center pt-5 font-semibold primary-fonts">Last updated {{ lastRefresh }}.</div>
     </div>
     <div class="mt-20 relative left-0 right-0 m-auto md:w-6/12 w-10/12 py-2 secondary-fonts">
-        <div class="text-center text-3xl font-bold text-primaryFontColor">Sales Value</div>
+        <!-- <div class="text-center text-3xl font-bold text-primaryFontColor">Sales Value</div> -->
         <div class="grid grid-cols-1">
             <slot></slot>
         </div>
@@ -47,7 +47,7 @@
 
     --filter-background-color: #1e293b;
     --filter-menu-color: #1e293b;
-    --filter-highlight-color: var(--gray-color);
+    --filter-highlight-color: var(--page-section-color);
     --filter-font-highlight-color: var(--secondary-highlight-color);
     --filter-font-color: var(--grayscale-two-color);
     --filter-border-color: var(--grayscale-three-color);
