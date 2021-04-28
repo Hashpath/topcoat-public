@@ -3,13 +3,12 @@
     <div class="overflow-hidden px-10 mx-auto">
         <CacheControls
             iconClass='fa fa-redo transform -rotate-45'
-            position='float-right relative mt-5'
-            textColor='text-secondaryFontColor'
-            buttonColors='text-primaryFontColor bg-primaryButtonColor'
+            position='float-right relative my-5'
+            textColor='text-primaryFontColor'
+            buttonColors='text-secondaryFontColor bg-primaryButtonColor'
             minimal />
     </div>
     <div class="pr-10 pl-10 mx-auto secondary-fonts">
-        <div class="mb-2 text-sm text-primaryFontColor">Filters</div>
         <div class="bg-pageSectionColor p-4 rounded">
             <div class="grid lg:grid-cols-4 md:grid-cols-1 sm:grid-cols-1 gap-4 secondary-fonts">
                 <slot name="filters"></slot>
@@ -34,14 +33,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 :root {
     --primary-color: #0F172A;
-    --primary-highlight-color: rgba(255, 255, 255, 0.24);
+    --primary-highlight-color: #eff6ff;
     --primary-border-color: #d1d5db;
-    --primary-font-color: #f8fafc;
+    --primary-font-color: var(--grayscale-three-color);
 
     --secondary-color: #164e63;
-    --secondary-highlight-color: #E5E7EB;
+    --secondary-highlight-color: rgba(255, 255, 255, 0.24);
     --secondary-border-color: #6B7280;
-    --secondary-font-color: var(--grayscale-three-color);
+    --secondary-font-color: #f8fafc;
 
     --grayscale-one-color: #F3F4F6;
     --grayscale-two-color: #4B5563;
@@ -50,8 +49,8 @@
 
     --filter-background-color: var(--page-section-color);
     --filter-menu-color: var(--page-section-color);
-    --filter-highlight-color: #eff6ff;
-    --filter-font-highlight-color: var(--primary-button-color);
+    --filter-highlight-color: var(--primary-highlight-color);
+    --filter-font-highlight-color: #00b8d4;
     --filter-font-color: var(--grayscale-three-color);
     --filter-border-color: var(--primary-border-color);
 

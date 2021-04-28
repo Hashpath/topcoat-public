@@ -39,7 +39,7 @@
                 v-for="page in project.nav"
                 :class="navSelected(page.url, 'text-secondaryFontColor border-secondaryHighlightColor', 'bg-secondaryButtonColor')"
                 :href="'/' + page.url"
-                class="w-max border-b border-primaryColor hover:text-primaryFontColor py-4 px-2 font-bold h-full flex items-center justify-center hover:text-secondaryFontColor hover:border-secondaryHighlightColor">
+                class="min-w-28 border-b border-primaryColor hover:text-primaryFontColor py-4 px-2 font-bold h-full flex items-center justify-center hover:text-secondaryFontColor hover:border-secondaryHighlightColor">
                 {{ page.title }}
             </a>
             <a

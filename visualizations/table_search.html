@@ -8,6 +8,7 @@
         class="primaryFilterRadius w-full text-filterFontColor bg-filterBackgroundColor border border-filterBorderColor flex justify-around items-center pl-4 focus:outline-none"
         v-model='tableQuery'
         @input='search'
+        @keyup='ifEscapePressed'
     />
     <div 
         @mouseleave='tableRows = []'
@@ -83,6 +84,12 @@ export default {
             this.selected = row.name;
             this.tableRows = [];
             this.tableQuery = '';
+        },
+        ifEscapePressed(e) {    
+            if (e.keyCode === 27) {
+                this.tableRows = [];
+                this.tableQuery = '';
+            }
         }
     },
     computed: {

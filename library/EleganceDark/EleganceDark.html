@@ -3,13 +3,12 @@
     <div class="overflow-hidden px-10 mx-auto">
         <CacheControls
             iconClass='fa fa-redo transform -rotate-45'
-            position='float-right relative mt-5'
+            position='float-right relative my-5'
             textColor='text-primaryFontColor'
             buttonColors='text-primaryFontColor bg-primaryButtonColor'
             minimal />
     </div>
     <div class="pr-10 pl-10 mx-auto secondary-fonts">
-        <div class="mb-2 text-sm text-primaryFontColor">Filters</div>
         <div class="bg-pageSectionColor p-4 rounded">
             <div class="grid lg:grid-cols-4 md:grid-cols-1 sm:grid-cols-1 gap-4 secondary-fonts">
                 <slot name="filters"></slot>
@@ -39,7 +38,7 @@
     --primary-font-color: var(--primary-border-color);
 
     --secondary-color: #1E293B;
-    --secondary-highlight-color: #E5E7EB;
+    --secondary-highlight-color: #ecb280;
     --secondary-border-color: #6B7280;
     --secondary-font-color: var(--secondary-border-color);
 
@@ -51,7 +50,7 @@
     --filter-background-color: var(--page-section-color);
     --filter-menu-color: var(--page-section-color);
     --filter-highlight-color: var(--grayscale-hover-color);
-    --filter-font-highlight-color: #ecb280;
+    --filter-font-highlight-color: var(--secondary-highlight-color);
     --filter-font-color: var(--primary-font-color);
     --filter-border-color: var(--grayscale-two-color);
 

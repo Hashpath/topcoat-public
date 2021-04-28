@@ -17,7 +17,7 @@
 
         <!-- Filters -->
         <div class="container mx-auto h-full max-w-screen-2xl lg:px-9 md:px-6 px-6 pb-1" v-if='!noFilters'>
-            <div class="bg-secondaryColor p-4 rounded-xl">
+            <div class="bg-secondaryColor p-4 rounded">
                 <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4 primary-fonts">
                     <slot name='filters' />
                 </div>
@@ -25,7 +25,7 @@
         </div>
 
         <!-- <div class="container mx-auto h-full max-w-screen-2xl lg:px-9 md:px-6 px-6 pb-1">
-            <div class="p-4 rounded-xl">
+            <div class="p-4 rounded">
                 <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4">
                     <slot name='stats' />
                 </div>
@@ -46,12 +46,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
 :root {
     --primary-color: var(--grayscale-three-color);
-    --primary-highlight-color: #34D399;
-    --primary-border-color: transparent;
+    --primary-highlight-color: rgba(229, 231, 235);
+    --primary-border-color: #FFFFFF;
     --primary-font-color: var(--grayscale-three-color);
 
     --secondary-color: #10B981;
-    --secondary-highlight-color: var(--grayscale-three-color);
+    --secondary-highlight-color: var(--primary-button-color);
     --secondary-border-color: #9CA3AF;
     --secondary-font-color: var(--secondary-border-color);
 
@@ -60,10 +60,11 @@
     --grayscale-three-color: #1F2937;
     --grayscale-hover-color: var(--grayscale-three-color);
 
-    --filter-background-color: var(--page-background-color);
-    --filter-menu-color: var(--grayscale-one-color);
-    --filter-highlight-color: var(--grayscale-three-color);
-    --filter-font-highlight-color: #90b1ff;
+
+    --filter-background-color: #FFFFFF;
+    --filter-menu-color: var(--filter-background-color);
+    --filter-highlight-color: var(--primary-highlight-color);
+    --filter-font-highlight-color: #00bfa5;
     --filter-font-color: #4B5563;
     --filter-border-color: var(--primary-border-color);
 
@@ -96,7 +97,7 @@
     }
 
     .tileElement {
-        @apply border-tileBorderColor bg-tileBackgroundColor rounded-3xl;
+        @apply border-tileBorderColor bg-tileBackgroundColor rounded;
     }
 
 </style>

@@ -11,11 +11,11 @@
               <a-menu-item key="ytd">Year to Date</a-menu-item>
               <a-menu-item key="custom">Custom Range</a-menu-item>
           </a-menu>
-          <a-button class="w-max h-full bg-primaryButtonColor border-primaryButtonColor text-grayscaleOneColor outline-none rounded-r-none" @click="onClose"> {{ presetValue }} <a-icon v-if="datePreset" type="down" /> </a-button>
+          <button class="w-max px-4 rounded-l h-full bg-primaryButtonColor border-primaryButtonColor text-grayscaleOneColor outline-none rounded-r-none" @click="onClose"> {{ presetValue }} <a-icon v-if="datePreset" type="down" /> </button>
       </a-dropdown>
     </div>
     <div class="inline-block text-filterFontHighlightColor primaryFilterRadius h-9">
-        <a-range-picker class="h-9" :allowClear="false" dropdownClassName="wld-date-picker bg-filterBackgroundColor" @change="onDateChange" :open="pickerOpened" @openChange="onOpen" :separator="'-'" :format="'MM/DD/YYYY'" :value="[ startDate, endDate ]">
+        <a-range-picker class="h-9 ant-calendar-filter" :allowClear="false" dropdownClassName="wld-date-picker bg-filterBackgroundColor" @change="onDateChange" :open="pickerOpened" @openChange="onOpen" :separator="'-'" :format="'MM/DD/YYYY'" :value="[ startDate, endDate ]">
             <a-icon slot="suffixIcon" type="calendar" class="text-filterFontColor" />
             <template slot="renderExtraFooter">
                 <div style="padding: 2.0rem; padding-right: 1.0rem;">
