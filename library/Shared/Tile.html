@@ -1,6 +1,6 @@
 <!----------------------- begin global tiles ----------------------->
 
-<div class="bg-white border-gray-200 border rounded p-0 tileElement text-primaryFontColor">
+<div class="rounded p-0 text-primaryFontColor" :class='{"tileElement": !hideBackground}'>
     <div v-if="loading && !nospinner">
         <div :style="{ height: (height - 2) + 'px' }">
             <Spinner />
@@ -12,3 +12,9 @@
         </div>
     </div>
 </div>
+
+<script type='visualization/javascript'>
+    export default {
+        props: ['hideBackground']
+    }
+</script>

@@ -1,15 +1,18 @@
-<div class="flex h-9 primaryFilterRadius">
-    <span class="z-10 font-normal text-center text-filterFontColor absolute right-6 top-1 rounded text-base items-center justify-center">
-        <i class='text-sm fas fa-search'></i>
-    </span>
-    <input
-        type="text"
-        :placeholder="metadata.placeholder || 'Search'"
-        class="primaryFilterRadius w-full text-filterFontColor bg-filterBackgroundColor border border-filterBorderColor flex justify-around items-center pl-4 focus:outline-none"
-        v-model='tableQuery'
-        @input='search'
-        @keyup='ifEscapePressed'
-    />
+<div class="flex primaryFilterRadius flex flex-col">
+    <div class="text-primaryFontColor text-xs font-semibold pb-1" v-if='metadata.title'>{{ metadata.title }}</div>
+    <div class="h-9 relative">
+        <span class="z-10 font-normal text-center text-filterFontColor absolute right-6 top-1 rounded text-base items-center justify-center">
+            <i class='text-sm fas fa-search'></i>
+        </span>
+        <input
+            type="text"
+            :placeholder="metadata.placeholder || 'Search'"
+            class="h-full primaryFilterRadius w-full text-filterFontColor bg-filterBackgroundColor border border-filterBorderColor flex justify-around items-center pl-4 focus:outline-none"
+            v-model='tableQuery'
+            @input='search'
+            @keyup='ifEscapePressed'
+        />
+    </div>
     <div 
         @mouseleave='tableRows = []'
         v-if='tableRows && tableRows.length'

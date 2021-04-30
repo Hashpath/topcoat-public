@@ -1,8 +1,6 @@
-<div class="flex justify-start items-start text-filterFontColor relative top-1">
-    <p class="font-semibold flex self-center pr-2">
-        {{ metadata.title }}
-    </p>
-    <div class="relative rounded-full w-12 h-6 transition duration-200 ease-linear"
+<div class="flex-col justify-start items-start text-filterFontColor relative">
+    <div class="text-primaryFontColor text-xs font-semibold pb-1" v-if='metadata.title'>{{ metadata.title }}</div>
+    <div class="relative top-1 rounded-full w-12 h-6 transition duration-200 ease-linear"
         :class="[checked_internal ? 'bg-grayscaleThreeColor right-0' : 'bg-grayscaleTwoColor']"
     >
         <label for="toggle" class="absolute bg-grayscaleOneColor border-2 w-6 h-6 rounded-full transition transform duration-100 ease-linear cursor-pointer border-grayscaleThreeColor border"

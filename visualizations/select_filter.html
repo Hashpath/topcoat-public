@@ -1,5 +1,6 @@
 <div class="relative" @mouseleave='showMenu = false'>
     <div class="relative" @click="showMenu = !showMenu">
+        <div class="text-primaryFontColor text-xs font-semibold pb-1" v-if='metadata.title'>{{ metadata.title }}</div>
         <div class="relative block px-3 border-filterBorderColor border appearance-none h-9 w-full bg-filterBackgroundColor text-filterFontColor rounded leading-tight focus:outline-none primaryFilterRadius">
             <button type="button" class="relative px-4 py-2 inline-flex w-full focus:z-10 focus:outline-none primaryFilterRadius">
                 <div class="flex">

@@ -12,14 +12,12 @@
                 </div>
             </div>
         </div>
-<!-- 
+
         <div class="container mx-auto h-full px-10 pt-10 pb-1">
-            <div class="p-4">
-                <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 secondary-fonts">
-                    <slot name="stats"></slot>
-                </div>
+            <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 secondary-fonts">
+                <slot name="stats"></slot>
             </div>
-        </div> -->
+        </div>
 
         <div class="container mx-auto h-full min-h-screen p-10">
             <div class="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-4 secondary-fonts pb-5">
@@ -67,7 +65,7 @@
     --primary-button-color: var(--primary-color);
     --secondary-button-color: var(--grayscale-two-color);
 
-    --tile-border-color: var(--primary-border-color);
+    --tile-border-color: var(--page-section-color);
     --tile-background-color: var(--page-section-color);
 
 }
@@ -92,7 +90,7 @@
 }
 
 .tileElement {
-  @apply border-tileBorderColor bg-tileBackgroundColor rounded;
+  @apply border border-tileBorderColor bg-tileBackgroundColor rounded;
 }
 
 </style> 
