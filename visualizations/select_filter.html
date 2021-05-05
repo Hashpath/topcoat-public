@@ -1,8 +1,8 @@
 <div class="relative" @mouseleave='showMenu = false'>
     <div class="relative" @click="showMenu = !showMenu">
         <div class="text-primaryFontColor text-xs font-semibold pb-1" v-if='metadata.title'>{{ metadata.title }}</div>
-        <div class="relative block px-3 border-filterBorderColor border appearance-none h-9 w-full bg-filterBackgroundColor text-filterFontColor rounded leading-tight focus:outline-none primaryFilterRadius">
-            <button type="button" class="relative px-4 py-2 inline-flex w-full focus:z-10 focus:outline-none primaryFilterRadius">
+        <div class="relative block px-3 border-filterBorderColor border appearance-none h-9 w-full bg-filterBackgroundColor text-filterFontColor rounded leading-tight focus:outline-none primaryFilterRadius overflow-hidden">
+            <button type="button" class="relative text-left py-2 inline-flex w-full focus:z-10 focus:outline-none primaryFilterRadius">
                 <div class="flex">
                     <div class="input-placeholder">
                         {{ selected || "Select..." }}
@@ -41,10 +41,11 @@ export default {
           showMenu: false,
           selected_internal: null,
           auto_height: true,
+          selected: '',
       }
     },
     computed: {
-      selected: {
+      selectedUrlParam: {
         get() {
           return this.selected_internal;
         },
@@ -65,15 +66,24 @@ export default {
     },
     methods: {
       selectItem(index) {
-        this.selected = this.options[index];
+        this.selected = this.labels[index];
+        this.selectedUrlParam = this.options[index];
       },
       onVisualizationInit() {
           // See if the page was loaded with a url param value
           const initial_value = this.getFilterValue("dropdown");
-          
+          const option_column = this.findColumnByTag('options');
+          const label_column = this.findColumnByTag('labels');
+
           if (initial_value) {
-            this.selected_internal = initial_value;
-            this.setFilterValue("dropdown", this.selected_internal, true);
+            if (this.rows) {
+              const selectedValue = this.rows.filter(op => {
+                return op[option_column].value == initial_value;
+              });
+              this.selected = selectedValue.length ? selectedValue[0][label_column].rendered : this.labels[0];
+              this.selected_internal = initial_value;
+              this.setFilterValue("dropdown", this.selected_internal, true);
+            }
           } else if (this.options.length) {
             this.selected_internal = this.options[0];
             this.setFilterValue("dropdown", this.selected_internal, true);
@@ -81,6 +91,14 @@ export default {
           } else {
             return null;
           }
+      }
+    },
+    watch: {
+      rows: {
+        handler() {
+          this.onVisualizationInit();
+        },
+        deep: true,
       }
     }
 }

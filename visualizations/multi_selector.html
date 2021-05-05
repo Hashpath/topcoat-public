@@ -1,4 +1,4 @@
-<div class="relative" :class='expanded ? "h-9" : ""' @mouseleave='close'>
+<div class="relative" :class='expanded ? "h-14" : ""' @mouseleave='close'>
     <div class="text-primaryFontColor text-xs font-semibold pb-1" v-if='metadata.title'>{{ metadata.title }}</div>
     <div
         class="block px-3 border-filterBorderColor border appearance-none w-full bg-filterBackgroundColor text-filterFontColor rounded leading-tight focus:outline-none primaryFilterRadius overflow-hidden"
@@ -8,11 +8,11 @@
     >
         <button
             type="button"
-            class="relative p-2 inline-flex rounded-lg focus:z-10 focus:outline-none rounded-b-none w-11/12 overflow-hidden"
+            class="relative w-auto py-2 inline-flex rounded-lg focus:z-10 focus:outline-none rounded-b-none overflow-hidden"
             @mouseenter='expanded = true'
         >
-            <div class="flex relative px-2 overflow-hidden h-full flex-wrap">
-                <div v-if='!selectedItems || !selectedItems.length'>
+            <div class="flex relative overflow-hidden h-full flex-wrap">
+                <div v-if='!selectedItems || !selectedItems.length' class="text-left w-auto">
                     Select Multiple...
                 </div>
                 <div
@@ -76,11 +76,9 @@
             },
             onVisualizationInit() {
                 const initial_value = this.getFilterValue("selected_items");
-                if (initial_value) {
-                    this.selected_internal = initial_value;
-                    this.setFilterValue("selected_items", this.selected_internal, true);
-                    return this.selected_internal;
-                }
+                this.selected_internal = initial_value || '';
+                this.setFilterValue("selected_items", this.selected_internal, true);
+                return this.selected_internal;
             },
             getMenuMargin() {
                 this.$nextTick(() => {

@@ -21,8 +21,8 @@
               <a-icon slot="suffixIcon" type="calendar" class="text-filterFontColor" />
               <template slot="renderExtraFooter">
                   <div style="padding: 2.0rem; padding-right: 1.0rem;">
-                  <span style="padding-right: 2.0rem;">Compare to previous</span>
-                  <a-radio-group v-model="previousMode" button-style="solid">
+                  <span style="padding-right: 2.0rem;" v-if='previousMode'>Compare to previous</span>
+                  <a-radio-group v-model="previousMode" button-style="solid" v-if='previousMode'>
                     <a-radio-button :disabled="datePreset == 'mtd' || datePreset == 'ytd'" value="period" class="bg-filterHighlightColor text-filterFontHighlightColor hover:bg-filterHighlightColor hover:text-filterFontHighlightColor">
                       Period
                     </a-radio-button>
@@ -30,14 +30,14 @@
                       Year
                     </a-radio-button>
                   </a-radio-group>
-                  <a-button class="wld-date-picker-apply-button border-primaryButtonColor bg-primaryButtonColor text-grayscaleOneColor hover:bg-primaryButtonColor hover:text-grayscaleOneColor" @click="clickApply">
+                  <a-button :class='{"mb-8": !previousMode}' class="wld-date-picker-apply-button border-primaryButtonColor bg-primaryButtonColor text-grayscaleOneColor hover:bg-primaryButtonColor hover:text-grayscaleOneColor" @click="clickApply">
                       Apply
                     </a-button>
                   </div>
               </template>
           </a-range-picker>
       </div>
-      <div class="inline-block flex px-3 text-primaryFontColor">
+      <div class="inline-block flex px-3 text-primaryFontColor" v-if='showPreviousMode'>
           <div v-if="refStart && refEnd" class="self-center">ref. {{ refStart.format('MM/DD/YYYY') }} - {{ refEnd.format('MM/DD/YYYY') }}</div>
       </div>
     </div>
@@ -58,6 +58,7 @@ export default {
           previousMode: null,
           show: false,
           auto_height: true,
+          showPreviousMode: false,
       }
     },
     mounted() {
@@ -100,7 +101,7 @@ export default {
         addColSpan() {
           this.$nextTick(() => {
             const screenWidth = window.innerWidth;
-            let col = 'col-span-3';
+            let col = !this.previousMode ? 'col-span-2' : 'col-span-3';
             if (screenWidth < 1024) col = 'col-span-1';
 
             const dateFiler = document.querySelector('.date-filter-container');
@@ -186,9 +187,13 @@ export default {
             }
 
             this.setFilterValue("date_preset", this.datePreset, false);
-            this.setFilterValue("previous_mode", this.previousMode, false);
-            this.setFilterValue("prev_start_date", this.refStart.format('YYYY-MM-DD'), false);
-            this.setFilterValue("prev_end_date", this.refEnd.format('YYYY-MM-DD'), true);
+
+            const includePrevious = this.metadata.include_previous;
+            if (includePrevious) {
+              this.setFilterValue("previous_mode", this.previousMode, false);
+              this.setFilterValue("prev_start_date", this.refStart.format('YYYY-MM-DD'), false);
+              this.setFilterValue("prev_end_date", this.refEnd.format('YYYY-MM-DD'), true);
+            }
 
         },
         presetChange(event, first) {
@@ -238,7 +243,9 @@ export default {
 
             var start_date = this.getFilterValue('start_date')
             var end_date = this.getFilterValue('end_date')
-            
+            const includePrevious = this.metadata.include_previous;
+            this.showPreviousMode = includePrevious;
+
             var date_preset = this.getFilterValue('date_preset')
             if (date_preset == null) {
               this.datePreset = 'last90days';
@@ -247,13 +254,15 @@ export default {
               this.datePreset = date_preset;
             }
 
-            var previous_mode = this.getFilterValue('previous_mode')
-            if (previous_mode == null) {
-              if (this.datePreset == 'mtd' || this.datePreset == 'ytd') this.previousMode = 'year'
-              else this.previousMode = 'period';
-              this.setFilterValue("previous_mode", this.previousMode, false);
-            } else {
-              this.previousMode = previous_mode;
+            if (includePrevious) {
+              var previous_mode = this.getFilterValue('previous_mode')
+              if (previous_mode == null) {
+                if (this.datePreset == 'mtd' || this.datePreset == 'ytd') this.previousMode = 'year'
+                else this.previousMode = 'period';
+                this.setFilterValue("previous_mode", this.previousMode, false);
+              } else {
+                this.previousMode = previous_mode;
+              }
             }
 
             if (this.datePreset != 'custom') {
@@ -280,8 +289,10 @@ export default {
 
               this.setFilterValue("start_date", this.startDate.format('YYYY-MM-DD'), false);
               this.setFilterValue("end_date", this.endDate.format('YYYY-MM-DD'), false);
-              this.setFilterValue("prev_start_date", this.refStart.format('YYYY-MM-DD'), false);
-              this.setFilterValue("prev_end_date", this.refEnd.format('YYYY-MM-DD'), true);
+              if (includePrevious) {
+                this.setFilterValue("prev_start_date", this.refStart.format('YYYY-MM-DD'), false);
+                this.setFilterValue("prev_end_date", this.refEnd.format('YYYY-MM-DD'), true);
+              }
             }
             this.addColSpan();
         }
@@ -314,7 +325,7 @@ export default {
 }
 
 .ant-calendar-picker-input.ant-input {
-  @apply bg-filterBackgroundColor text-filterFontColor h-full border-filterBorderColor text-sm;
+  @apply bg-filterBackgroundColor text-filterFontColor h-full border border-filterBorderColor text-sm;
 }
 
 .ant-dropdown-menu {
@@ -343,5 +354,6 @@ export default {
 .ant-calendar-in-range-cell .ant-calendar-date {
   @apply text-grayscaleOneColor !important;
 }
+
 
 </style>

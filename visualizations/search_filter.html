@@ -38,11 +38,9 @@
             onVisualizationInit() {
 
                 const initial_value = this.getFilterValue("query");
-                if (initial_value) {
-                    this.text_internal = initial_value;
-                    this.setFilterValue("query", this.text_internal, true);
-                    return this.text_internal;
-                }
+                this.text_internal = initial_value || '';
+                this.setFilterValue("query", this.text_internal, true);
+                return this.text_internal;
             },
             onEnter(e) {
                 if (e.keyCode === 13) {
