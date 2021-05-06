@@ -1,10 +1,12 @@
-<div class="flex-col justify-start items-start text-filterFontColor relative">
+<div class="flex-col md:justify-start justify-center items-start text-filterFontColor relative w-full md:w-28">
     <div class="text-primaryFontColor text-xs font-semibold pb-1" v-if='metadata.title'>{{ metadata.title }}</div>
+    <div class="h-5" v-else></div>
     <div class="relative top-1 rounded-full w-12 h-6 transition duration-200 ease-linear"
         :class="[checked_internal ? 'bg-grayscaleThreeColor right-0' : 'bg-grayscaleTwoColor']"
     >
-        <label for="toggle" class="absolute bg-grayscaleOneColor border-2 w-6 h-6 rounded-full transition transform duration-100 ease-linear cursor-pointer border-grayscaleThreeColor border"
+        <label v-if='!loading' for="toggle" class="absolute bg-grayscaleOneColor border-2 w-6 h-6 rounded-full transition transform duration-100 ease-linear cursor-pointer border-grayscaleThreeColor border"
             :class="[checked_internal ? 'bg-grayscaleOneColor right-0' : 'bg-grayscaleOneColor left-0']"></label>
+        <a-icon type="loading" v-else class="pl-5 pb-4" />
         <input type="checkbox" id="toggle" name="toggle" class="appearance-none w-full h-full focus:outline-none" v-model='checked'>
     </div>
 </div>
@@ -14,7 +16,7 @@ export default {
     data() {
       return {
           checked_internal: false,
-          auto_height: true,
+          is_filter: true,
       }
     },
     computed: {

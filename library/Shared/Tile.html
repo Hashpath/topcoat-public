@@ -1,6 +1,6 @@
 <!----------------------- begin global tiles ----------------------->
 
-<div class="rounded p-0 text-primaryFontColor" :class='{"tileElement": !hideBackground}'>
+<div class="rounded p-0 text-primaryFontColor relative" :class='{"tileElement": !hideBackground}'>
     <div v-if="loading && !nospinner">
         <div :style="{ height: (height - 2) + 'px' }">
             <Spinner />

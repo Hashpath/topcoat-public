@@ -10,9 +10,9 @@
 
 <div id="dashboard">
     <NewsprintDarkHeader></NewsprintDarkHeader>
-    <div class="container xl:px-80 lg:px-48 md:px-20 sm:px-5 relative left-0 right-0 m-auto">
+    <div class="container-width relative left-0 right-0 m-auto">
         <div class="mt-20 py-5 px-10 bg-pageSectionColor">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 primary-fonts">
+            <div class="flex flex-wrap md:flex-row flex-col gap-3 primary-fonts">
                 <slot name="filters"></slot>
             </div>
         </div>
@@ -26,7 +26,7 @@
             <slot name='stats'></slot>
         </div>
     </div> -->
-    <div class="mt-14 relative left-0 right-0 m-auto py-2 secondary-fonts container xl:px-80 lg:px-48 md:px-20 sm:px-5 relative left-0 right-0 m-auto">
+    <div class="mt-14 relative left-0 right-0 m-auto py-2 secondary-fonts container-width relative left-0 right-0 m-auto">
         <!-- <div class="text-center text-3xl font-bold text-primaryFontColor">Sales Value</div> -->
         <div class="grid grid-cols-1">
             <slot></slot>
@@ -96,6 +96,16 @@ body {
 
 .tileElement {
     @apply border-tileBorderColor bg-tileBackgroundColor rounded my-3;
+}
+
+.container-width {
+    width: 900px;
+}
+
+@media (max-width: 900px) {
+    .container-width {
+        width: 100%;
+    }
 }
 
 </style>
