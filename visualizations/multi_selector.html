@@ -2,14 +2,14 @@
     <div class="text-primaryFontColor text-xs font-semibold pb-1" v-if='metadata.title'>{{ metadata.title }}</div>
     <div class="h-5" v-else></div>
     <div
-        class="block px-3 border-filterBorderColor border appearance-none w-full bg-filterBackgroundColor text-filterFontColor rounded leading-tight focus:outline-none primaryFilterRadius overflow-hidden"
+        class="block border-filterBorderColor border appearance-none w-full bg-filterBackgroundColor text-filterFontColor rounded leading-tight focus:outline-none primaryFilterRadius overflow-hidden"
         @click='showMenu = true'
         :class='expanded ? "absolute h-max z-50" : "relative h-9"'
         ref='container'
     >
         <button
             type="button"
-            class="relative w-auto py-2 inline-flex rounded-lg focus:z-10 focus:outline-none rounded-b-none overflow-hidden"
+            class="relative left-0 right-0 w-full pl-2 py-2 inline-flex rounded-lg focus:z-10 focus:outline-none rounded-b-none overflow-hidden"
             @mouseenter='expanded = true'
         >
             <div class="flex relative overflow-hidden h-full flex-wrap">
